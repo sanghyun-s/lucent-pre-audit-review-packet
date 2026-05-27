@@ -41,7 +41,7 @@ from features import (
     validate_required_columns,
 )
 from integrity import run_integrity_checks, summarize_findings
-from model import SENSITIVITY_MAP, run_isolation_forest
+from model import SENSITIVITY_MAP, run_hybrid_pipeline
 from scoring import apply_scoring
 
 
@@ -51,9 +51,10 @@ from scoring import apply_scoring
 
 app = FastAPI(
     title="AI Audit Risk Analyzer API",
-    version="0.2.0",
+    version="0.3.0",
     description="ML anomaly detection + materiality-calibrated risk scoring "
-                "+ PCAOB-aligned labels for QuickBooks GL exports.",
+                "+ PCAOB-aligned labels for QuickBooks GL exports. Phase 3 "
+                "adds a supervised hybrid layer and qualitative override.",
 )
 
 # Permissive CORS for local dev. Tighten before production deploy.
@@ -213,8 +214,8 @@ async def analyze(
         "is_non_standard_pattern":     int(feat_df["is_non_standard_pattern"].sum()),
     }
 
-    # ---- 5. ML + scoring ----
-    scored_df = run_isolation_forest(
+    # ---- 5. ML + scoring (Phase 3: hybrid two-track) ----
+    scored_df, hybrid_info = run_hybrid_pipeline(
         feat_df,
         feature_cols=feature_cols,
         detection_sensitivity=detection_sensitivity,
@@ -272,9 +273,19 @@ async def analyze(
         "control_gap_score", "fraud_risk_flag",
         "period_over_period_pct", "vendor_concentration_pct",
         "is_year_end_concentration", "is_non_standard_pattern",
+        # Phase 3 hybrid columns
+        "fraud_probability",
+        "is_qualitative_override", "qualitative_override_note",
+        "is_supervised_escalation", "supervised_escalation_note",
     ]
     display_cols = [c for c in display_cols if c in flagged_df.columns]
     flagged_rows = _df_to_records(flagged_df[display_cols])
+
+    # Phase 3 hybrid layer metadata for the response
+    n_qual_override = int(scored_df.get("is_qualitative_override",
+                                        pd.Series([0]*len(scored_df))).sum())
+    n_sup_escalation = int(scored_df.get("is_supervised_escalation",
+                                         pd.Series([0]*len(scored_df))).sum())
 
     # ---- 8. Response ----
     return {
@@ -310,6 +321,14 @@ async def analyze(
             "flagged": n_flagged,
             "flagged_pct": round(pct_flagged, 2),
             "risk_rating": risk_rating,
+        },
+        "hybrid_layer": {
+            "status": hybrid_info.get("status"),
+            "n_qualitative_override": n_qual_override,
+            "n_supervised_escalation": n_sup_escalation,
+            "supervised_n_positive": hybrid_info.get("n_positive"),
+            "supervised_n_negative": hybrid_info.get("n_negative"),
+            "supervised_feature_importance": hybrid_info.get("feature_importance", {}),
         },
         "chart_data": {
             "tier_distribution": tier_distribution,

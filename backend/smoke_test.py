@@ -1,6 +1,6 @@
 """
 smoke_test.py — runs the full pipeline on sample_gl.csv and verifies that
-both Phase 1 done-criteria (12) and Phase 2 done-criteria (10) are met.
+Phase 1 (12), Phase 2 (10), and Phase 3 (8) done-criteria are met.
 """
 from __future__ import annotations
 
@@ -21,7 +21,13 @@ from features import (
     validate_required_columns,
 )
 from integrity import run_integrity_checks, summarize_findings
-from model import SENSITIVITY_MAP, run_isolation_forest
+from model import (
+    SENSITIVITY_MAP,
+    SUPERVISED_FEATURE_COLS,
+    run_hybrid_pipeline,
+    run_isolation_forest,
+    train_supervised_layer,
+)
 from scoring import apply_scoring
 
 
@@ -34,7 +40,7 @@ def check(label: str, ok: bool, detail: str = "") -> None:
 
 def main() -> None:
     print("=" * 70)
-    print("Phase 1 + Phase 2 smoke test on sample_gl.csv")
+    print("Phase 1 + Phase 2 + Phase 3 smoke test on sample_gl.csv")
     print("=" * 70)
 
     # ====================================================================
@@ -152,15 +158,68 @@ def main() -> None:
           and int(feat["control_gap_score"].max()) <= 2)
 
     # ====================================================================
+    # PHASE 3 — Hybrid layer + qualitative override + supervised escalation
+    # ====================================================================
+    print("\nPHASE 3 done-criteria")
+    print("-" * 70)
+
+    # Rerun pipeline through the hybrid orchestrator so we exercise it end-to-end
+    hybrid_scored, hybrid_info = run_hybrid_pipeline(
+        feat, feature_cols=get_feature_columns(),
+        detection_sensitivity=sensitivity,
+    )
+
+    check("1. run_hybrid_pipeline returns scored df + info dict",
+          hasattr(hybrid_scored, "shape") and isinstance(hybrid_info, dict))
+
+    check("2. supervised layer trained successfully",
+          hybrid_info.get("status") == "trained",
+          f"status={hybrid_info.get('status')}")
+
+    check("3. fraud_probability column present and in [0,1]",
+          "fraud_probability" in hybrid_scored.columns
+          and hybrid_scored["fraud_probability"].between(0.0, 1.0).all())
+
+    check("4. supervised features deliberately exclude fraud-rule flags",
+          all(c not in SUPERVISED_FEATURE_COLS for c in [
+              "is_round_number", "is_weekend_posting", "missing_description",
+              "is_new_vendor", "is_near_approval_threshold",
+          ]),
+          "classifier cannot trivially reproduce the rule")
+
+    # Apply scoring with override + supervised escalation
+    hybrid_final = apply_scoring(hybrid_scored, fs_mat, perf_mat, txn_mat)
+
+    check("5. qualitative override columns present",
+          all(c in hybrid_final.columns for c in [
+              "is_qualitative_override", "qualitative_override_note",
+          ]))
+
+    check("6. supervised escalation columns present",
+          all(c in hybrid_final.columns for c in [
+              "is_supervised_escalation", "supervised_escalation_note",
+          ]))
+
+    n_override = int(hybrid_final["is_qualitative_override"].sum())
+    n_sup_esc = int(hybrid_final["is_supervised_escalation"].sum())
+    check("7. qualitative override fires on at least some rows",
+          n_override > 0,
+          f"{n_override} rows escalated by qualitative override")
+
+    check("8. all override rows have a non-empty note",
+          (hybrid_final[hybrid_final["is_qualitative_override"] == 1]
+           ["qualitative_override_note"].str.len() > 0).all())
+
+    # ====================================================================
     # Diagnostic output
     # ====================================================================
     print("\nDiagnostic summary")
     print("-" * 70)
-    print(f"  Total rows:                  {len(final):,}")
-    flagged = final[final["flagged_status"] == "Flagged"]
-    print(f"  Flagged:                     {len(flagged):,} ({len(flagged)/len(final)*100:.1f}%)")
-    print(f"  raw_tier:                    {scored['raw_tier'].value_counts().to_dict()}")
-    print(f"  final_tier:                  {final['final_tier'].value_counts().to_dict()}")
+    print(f"  Total rows:                  {len(hybrid_final):,}")
+    flagged = hybrid_final[hybrid_final["flagged_status"] == "Flagged"]
+    print(f"  Flagged:                     {len(flagged):,} ({len(flagged)/len(hybrid_final)*100:.1f}%)")
+    print(f"  raw_tier:                    {hybrid_scored['raw_tier'].value_counts().to_dict()}")
+    print(f"  final_tier:                  {hybrid_final['final_tier'].value_counts().to_dict()}")
     print()
     print(f"  T1 firing:")
     for c in ["is_round_number", "is_weekend_posting", "missing_description",
@@ -174,18 +233,39 @@ def main() -> None:
     print(f"    is_non_standard_pattern           {int(feat['is_non_standard_pattern'].sum()):>4d}")
     print(f"    period_over_period_pct (nonzero)  {int((feat['period_over_period_pct'].abs() > 0).sum()):>4d}")
     print()
+    print(f"  Phase 3 hybrid layer:")
+    print(f"    supervised status                 {hybrid_info.get('status')}")
+    print(f"    supervised n_positive             {hybrid_info.get('n_positive')}")
+    print(f"    fraud_probability >= 0.5          {int((hybrid_final['fraud_probability'] >= 0.5).sum())}")
+    print(f"    is_qualitative_override fired     {n_override}")
+    print(f"    is_supervised_escalation fired    {n_sup_esc}")
+    print()
+    print(f"  Top supervised feature importances:")
+    importances = hybrid_info.get("feature_importance", {})
+    for k, v in sorted(importances.items(), key=lambda t: -t[1])[:5]:
+        print(f"    {k:32s} {v:.3f}")
+    print()
     print(f"  Integrity findings:")
     for f in findings:
         print(f"    [{f.status:>7s}] {f.name:18s} {f.summary}")
     print()
     print("  Top 3 flagged transactions:")
     show_cols = ["date", "account_name", "vendor", "amount", "anomaly_score",
-                 "final_tier", "fraud_risk_flag", "control_gap_score", "active_flags"]
+                 "fraud_probability", "final_tier", "is_qualitative_override",
+                 "active_flags"]
     show_cols = [c for c in show_cols if c in flagged.columns]
     print(flagged[show_cols].head(3).to_string(index=False))
 
+    if n_override > 0:
+        print("\n  Sample qualitative override row:")
+        override_rows = hybrid_final[hybrid_final["is_qualitative_override"] == 1]
+        r = override_rows.iloc[0]
+        print(f"    amount={r['amount']} | raw_tier={r['raw_tier']} | "
+              f"final_tier={r['final_tier']}")
+        print(f"    note: {r['qualitative_override_note']}")
+
     print("\n" + "=" * 70)
-    print("All Phase 1 + Phase 2 done-criteria pass.")
+    print("All Phase 1 + Phase 2 + Phase 3 done-criteria pass.")
     print("=" * 70)
 
 

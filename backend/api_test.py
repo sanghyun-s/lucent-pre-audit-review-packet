@@ -102,8 +102,28 @@ def main():
         r0 = rows[0]
         for col in ("date", "account_name", "vendor", "amount",
                     "anomaly_score", "final_tier", "pcaob_label",
-                    "active_flags", "control_gap_score", "fraud_risk_flag"):
+                    "active_flags", "control_gap_score", "fraud_risk_flag",
+                    # Phase 3 additions
+                    "fraud_probability",
+                    "is_qualitative_override", "qualitative_override_note",
+                    "is_supervised_escalation", "supervised_escalation_note"):
             check(f"row[0] has '{col}'", col in r0)
+
+        # Phase 3 sanity: fraud_probability between 0 and 1
+        check("fraud_probability is between 0 and 1",
+              0.0 <= r0["fraud_probability"] <= 1.0,
+              f"got {r0['fraud_probability']}")
+
+    # Phase 3: hybrid_layer metadata
+    check("response has 'hybrid_layer' section", "hybrid_layer" in body)
+    hl = body["hybrid_layer"]
+    check("hybrid_layer status == 'trained'", hl.get("status") == "trained",
+          f"got {hl.get('status')}")
+    check("hybrid_layer reports n_qualitative_override",
+          isinstance(hl.get("n_qualitative_override"), int))
+    check("hybrid_layer reports supervised_feature_importance",
+          isinstance(hl.get("supervised_feature_importance"), dict)
+          and len(hl["supervised_feature_importance"]) > 0)
 
     # Sample of top flagged row
     print("\nTop flagged row from /api/analyze:")
