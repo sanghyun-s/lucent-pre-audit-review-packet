@@ -17,13 +17,22 @@ Endpoint:
     Returns:
       AnalyzeResponse JSON
 
-  POST /api/narratives  (application/json)  — Phase 4a
+  POST /api/narratives  (application/json)  — Phase 4a + 4b
     Body:
       rows: list of flagged-row dicts (from a prior /api/analyze response)
       entity_context: {entity_type, period_start, period_end}
       top_n: int (1-20, default 10)
-    Returns:
-      {narratives: {position: {risk_summary, narrative_status}},
+    Returns (Phase 4b shape):
+      {narratives: {position: {
+          risk_summary,
+          assertion_consideration,
+          magnitude_assessment,
+          likelihood_assessment,
+          control_or_coso_consideration,
+          recommended_follow_up,  (list of 3-5 strings)
+          disclaimer,
+          narrative_status,       ("GPT" | "Fallback")
+        }},
        selected_row_keys: [...], top_n_used, n_gpt, n_fallback}
 
   GET /api/healthz  — liveness probe
@@ -72,11 +81,13 @@ from scoring import apply_scoring
 
 app = FastAPI(
     title="AI Audit Risk Analyzer API",
-    version="0.4.0",
+    version="0.4.1",
     description="ML anomaly detection + materiality-calibrated risk scoring "
-                "+ PCAOB-aligned labels for QuickBooks GL exports. Phase 4a "
-                "adds a GPT narrative endpoint for hedged, workpaper-style "
-                "risk summaries on flagged transactions.",
+                "+ PCAOB-aligned labels for QuickBooks GL exports. Phase 4b "
+                "extends the GPT narrative endpoint to a full 7-field audit "
+                "memo (risk summary, assertion consideration, magnitude, "
+                "likelihood, COSO consideration, follow-up procedures, "
+                "disclaimer) with strict validation and deterministic fallback.",
 )
 
 # Permissive CORS for local dev. Tighten before production deploy.
@@ -365,7 +376,7 @@ async def analyze(
 
 
 # ---------------------------------------------------------------------------
-# Phase 4a — narrative endpoint
+# Phase 4a + 4b — narrative endpoint
 # ---------------------------------------------------------------------------
 
 class _EntityContext(BaseModel):
@@ -387,12 +398,12 @@ class _NarrativesRequest(BaseModel):
 
 @app.post("/api/narratives")
 def narratives(req: _NarrativesRequest) -> dict[str, Any]:
-    """Generate row-level risk summaries for the top-N flagged transactions.
+    """Generate full audit memos for the top-N flagged transactions.
 
-    Phase 4a: returns one `risk_summary` field per row, plus a
-    `narrative_status` of either "GPT" or "Fallback". The endpoint never
-    raises on OpenAI errors — it always returns a fallback narrative
-    instead, so the frontend never has to handle 5xx errors from this path.
+    Phase 4b: each narrative now contains all 7 audit-memo fields plus
+    `narrative_status` ("GPT" or "Fallback"). The endpoint never raises
+    on OpenAI errors or validator rejection — both paths route through a
+    deterministic fallback that is itself guaranteed to pass validation.
     """
     if not req.rows:
         raise HTTPException(
