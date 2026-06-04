@@ -81,7 +81,7 @@ export default function Page() {
         <aside className="space-y-4">
           <ClientProfileForm value={form} onChange={setForm} options={options} />
           <div className="text-xs text-muted-foreground px-2">
-            Tier 1 + Tier 2 — Phase 2 of 5. GPT narrative layer is Phase 4.
+            Phases 1–3 + hybrid ML shipped. Phase 4a: GPT narrative layer (in progress).
           </div>
         </aside>
 
@@ -134,7 +134,14 @@ export default function Page() {
 
               <div className="space-y-3">
                 <h2 className="text-lg font-semibold">6. Flagged Transactions</h2>
-                <FlaggedTable rows={result.flagged_rows} />
+                <FlaggedTable
+                  rows={result.flagged_rows}
+                  entityContext={{
+                    entity_type: result.request?.entity_type,
+                    period_start: result.request?.period_start,
+                    period_end: result.request?.period_end,
+                  }}
+                />
               </div>
             </div>
           )}

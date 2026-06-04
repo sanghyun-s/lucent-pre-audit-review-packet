@@ -17,6 +17,15 @@ Endpoint:
     Returns:
       AnalyzeResponse JSON
 
+  POST /api/narratives  (application/json)  — Phase 4a
+    Body:
+      rows: list of flagged-row dicts (from a prior /api/analyze response)
+      entity_context: {entity_type, period_start, period_end}
+      top_n: int (1-20, default 10)
+    Returns:
+      {narratives: {position: {risk_summary, narrative_status}},
+       selected_row_keys: [...], top_n_used, n_gpt, n_fallback}
+
   GET /api/healthz  — liveness probe
 
 Run locally:  uvicorn api:app --reload --port 8000
@@ -29,8 +38,15 @@ from datetime import date, datetime
 from typing import Any
 
 import pandas as pd
+from dotenv import load_dotenv
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, Field
+
+# Load .env early so any module that reads OPENAI_API_KEY (or other env
+# vars) sees them. dotenv is silent if .env is missing — appropriate for
+# production where env vars come from the host.
+load_dotenv()
 
 from features import (
     REQUIRED_COLUMNS,
@@ -42,6 +58,11 @@ from features import (
 )
 from integrity import run_integrity_checks, summarize_findings
 from model import SENSITIVITY_MAP, run_hybrid_pipeline
+from narrative import (
+    DEFAULT_TOP_N,
+    MAX_TOP_N,
+    generate_narratives_for_rows,
+)
 from scoring import apply_scoring
 
 
@@ -51,10 +72,11 @@ from scoring import apply_scoring
 
 app = FastAPI(
     title="AI Audit Risk Analyzer API",
-    version="0.3.0",
+    version="0.4.0",
     description="ML anomaly detection + materiality-calibrated risk scoring "
-                "+ PCAOB-aligned labels for QuickBooks GL exports. Phase 3 "
-                "adds a supervised hybrid layer and qualitative override.",
+                "+ PCAOB-aligned labels for QuickBooks GL exports. Phase 4a "
+                "adds a GPT narrative endpoint for hedged, workpaper-style "
+                "risk summaries on flagged transactions.",
 )
 
 # Permissive CORS for local dev. Tighten before production deploy.
@@ -140,6 +162,10 @@ def options() -> dict[str, Any]:
         },
         "detection_sensitivities": list(SENSITIVITY_MAP.keys()),
         "required_columns": REQUIRED_COLUMNS,
+        "narrative": {
+            "default_top_n": DEFAULT_TOP_N,
+            "max_top_n": MAX_TOP_N,
+        },
     }
 
 
@@ -336,3 +362,48 @@ async def analyze(
         },
         "flagged_rows": flagged_rows,
     }
+
+
+# ---------------------------------------------------------------------------
+# Phase 4a — narrative endpoint
+# ---------------------------------------------------------------------------
+
+class _EntityContext(BaseModel):
+    entity_type: str | None = None
+    period_start: str | None = None
+    period_end: str | None = None
+
+
+class _NarrativesRequest(BaseModel):
+    """Body schema for POST /api/narratives.
+
+    `rows` is the same shape as the `flagged_rows` array in /api/analyze's
+    response. The frontend just forwards them.
+    """
+    rows: list[dict[str, Any]] = Field(default_factory=list)
+    entity_context: _EntityContext = Field(default_factory=_EntityContext)
+    top_n: int = Field(default=DEFAULT_TOP_N, ge=1, le=MAX_TOP_N)
+
+
+@app.post("/api/narratives")
+def narratives(req: _NarrativesRequest) -> dict[str, Any]:
+    """Generate row-level risk summaries for the top-N flagged transactions.
+
+    Phase 4a: returns one `risk_summary` field per row, plus a
+    `narrative_status` of either "GPT" or "Fallback". The endpoint never
+    raises on OpenAI errors — it always returns a fallback narrative
+    instead, so the frontend never has to handle 5xx errors from this path.
+    """
+    if not req.rows:
+        raise HTTPException(
+            status_code=400,
+            detail="No rows provided. Call /api/analyze first and forward "
+                   "the flagged_rows array to this endpoint.",
+        )
+
+    result = generate_narratives_for_rows(
+        rows=req.rows,
+        entity_context=req.entity_context.model_dump(),
+        top_n=req.top_n,
+    )
+    return {"ok": True, **result}
