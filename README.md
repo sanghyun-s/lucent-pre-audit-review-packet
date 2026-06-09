@@ -1,588 +1,380 @@
-# 📚 LeetCode Study Log — 2026
+# AI Audit Risk Analyzer
 
-**Goal:** Build pattern recognition through systematic practice  
-**Study Pace:** 3-7 problems/day  
-**Mentor Review:** Weekly  
-**Focus:** Python3 + SQL  
+> **Status:** Phase 4 shipped · Phase 5 planned · **Phase 4 shipped Jun 9, 2026**
+> **Stack:** FastAPI · Next.js 14 · scikit-learn · OpenAI · Tailwind · shadcn/ui · Plotly
 
----
+ML anomaly detection + materiality-calibrated risk scoring + PCAOB-aligned labels for QuickBooks GL exports, with a live LLM narrative layer that translates findings into hedged, framework-grounded audit review memos.
 
-## 📊 Progress Dashboard
-
-| Day | Date | Easy | Medium | Hard | Category | Status |
-|-----|------|------|--------|------|----------|--------|
-| Day 1 | 05/15 | 7 | 4 | 0 | Arrays, Hash Map, Sorting, Backtracking | ✅ Complete |
-| Day 2 (Makeup) | 05/16 | 6 | 1 | 0 | Sorting, Brute Force | ✅ Complete |
-| Day 3 | 05/15 | 2 | 2 | 0 | DFS/Trees | ✅ Complete |
-| Day 4A | 05/16 | 4 | 2 | 1 | SQL/MySQL | ✅ Complete |
-| Day 4B | 05/16 | 2 | 1 | 0 | Matrix Traversal | ✅ Complete |
-| Day 5 | 05/18 | 3 | 3 | 0 | Greedy Algorithm | ✅ Complete |
-| Day 6 | 05/19 | 2 | 1 | 0 | Hash Map / Hash Set | ✅ Complete |
-| *(Gap: final exams + app projects)* | 05/20–06/03 | — | — | — | Returned 6/4 — honest log | 📝 Noted |
-| Day 8 | 06/04 | 18 | 2 | 0 | Mixed (DP, Bit, Prefix Sum, Matrix, SQL, Simulation) | ✅ Complete |
-| Day 9 | 06/05 | 7 | 3 | 0 | Strings + Tree DFS | ✅ Complete |
-| Day 10 (light) | 06/07 | 4 | 1 | 0 | Hash Table Family | ✅ Complete |
+A generalized audit software (GAS) prototype that automates transaction-level analytical review procedures (ARP) on SMB general ledger data. Built as a portfolio piece exploring the intersection of accounting standards, machine learning, and LLM-driven narrative generation.
 
 ---
 
-## 🔢 Total Solved
+## Build progress
 
-- 🟢 Easy: 55
-- 🟡 Medium: 20
-- 🔴 Hard: 1
-- **Total: 76**
-
----
-
-## 🔥 Current Stats
-
-- **Study streak:** Day 10 🔥 (low-energy day handled with sustainable pacing; 35 problems across Days 8-10)
-- **Patterns learned:** Arrays, Hash Map, Hash Set, Hash Table (5+ sub-patterns), Two Pointers, Binary Search, Backtracking, Sorting, DP/Fibonacci, DP/Bit, DFS Trees (5 sub-patterns), Window Functions, JOIN, GROUP BY+DISTINCT, CROSS JOIN, Anti-Join, String Manipulation (5 sub-patterns), Spiral Traversal, Greedy, Bit Manipulation, XOR+Popcount, Counting Sort, Matrix Diagonal, Prefix Sum, Enumeration, Subset Bitmask, Permutation Frequency Trick, In-Place Bit Packing, Simulation, Manhattan Distance, Sparse Representation, Class Design
-- **Languages:** Python3, SQL/MySQL
-- **Next up:** Sliding Window & Stack — Medium-difficulty pattern drill
+| Phase | Status | Shipped | Summary |
+|---|---|---|---|
+| Phase 1 — MVP pipeline | ✅ Shipped | May 17, 2026 | CSV upload → 6-feature ML pipeline → PCAOB-labeled table + charts (Streamlit prototype, since migrated) |
+| Phase 2 — Tier 2 features + integrity + stack migration | ✅ Shipped | May 18, 2026 | 6 Tier 2 features, 4 data integrity checks, FastAPI restructure, Next.js + shadcn frontend |
+| Phase 3 — Hybrid fraud detection + qualitative override | ✅ Shipped | May 27, 2026 | Hybrid two-track ML (Isolation Forest + weak-label Random Forest) with PCAOB AS 2401 qualitative override |
+| Phase 4 — GPT narrative layer + workflow UI | ✅ Shipped | Jun 9, 2026 | Live OpenAI integration producing 7-field audit memos with strict validator and deterministic fallback, concurrent generation, explicit 4-section workflow UI with card-with-hierarchy memo rendering |
+| Phase 5 — Standards Grounding + deployment + polish | ⬜ Planned | — | Rule-based Standards Grounding panel (AS 5 / AS 2401 / AS 3 / COSO citations), CSV export expansion for all 7 memo fields, Vercel + Render deployment, README/branding finalization |
 
 ---
 
-## 📋 PROBLEM LOG BY DAY
+## What it does
+
+Upload a GL CSV, configure the client profile (entity type, materiality benchmark, detection sensitivity, audit period), and the app runs the following pipeline in under a second:
+
+1. **Validates** the file structure and required columns
+2. **Cleans** and coerces dtypes (date → datetime, amount → numeric, derives `abs_amount`)
+3. **Engineers 12 audit-domain features** — 6 Tier 1 features that feed the ML model (account-level magnitude z-score, round number, weekend posting, missing description, new vendor, near approval threshold) plus 6 Tier 2 features for display and override logic (control gap score, fraud risk flag, period-over-period %, vendor concentration %, year-end concentration, non-standard DR/CR pattern)
+4. **Runs 4 data integrity checks** — hash total, cross-footing, date-in-period, account mapping
+5. **Scores anomalies** with a hybrid ML layer: unsupervised Isolation Forest (200 trees, sensitivity-controlled contamination) for label-free anomaly detection, plus a weak-label supervised classifier that catches subtle fraud the unsupervised layer misses
+6. **Applies the materiality filter** — downgrades or escalates the raw ML tier based on whether the dollar amount exceeds Performance / Transaction materiality
+7. **Applies the qualitative override** — when ≥ 2 fraud indicators co-occur on a single transaction, escalates the tier *above* what materiality would assign (PCAOB AS 2401 / AS 5 qualitative materiality)
+8. **Labels** findings with PCAOB-aligned language: *Potential Material Weakness Indicator*, *Potential Significant Deficiency*, *Monitor — Below Escalation Threshold*
+9. **Returns** a sortable, exportable table of flagged transactions with the specific risk indicators that fired on each row, the supervised classifier's fraud probability, and qualitative override annotations
+10. **On user request**, generates 7-field audit memos via `gpt-4o-mini` for the top-N most demo-relevant flagged transactions — each memo covers risk summary, assertion consideration, magnitude assessment, likelihood assessment, control/COSO consideration, recommended follow-up procedures, and a verbatim disclaimer. Output passes a strict validator (schema, length, banned-phrase, name-leakage, verbatim disclaimer) before display, with a deterministic rule-based fallback that satisfies the same validator by construction.
+
+The core thesis: a generic ML anomaly detector finds statistically unusual transactions. An audit-grade tool also asks whether the dollar amount matters, recognizes that some patterns are material regardless of amount, and translates findings into the cautious, hedged language standards require.
 
 ---
 
-## **DAY 1 | May 15, 2026 | 11 Problems (7 Easy + 4 Medium)**
+## Skills demonstrated
 
-### Easy (7)
+This project exercises a deliberate breadth across full-stack engineering, applied ML, and domain modeling. What's actually been built and why each item is non-trivial:
 
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 1 | Two Sum | Hash Map | 2026-05-15 | [View](problems/easy/0001-two-sum.md) ✅ |
-| 14 | Longest Common Prefix | String | 2026-05-15 | [View](problems/easy/0014-longest-common-prefix.md) ✅ |
-| 26 | Remove Duplicates | Two Pointers | 2026-05-15 | [View](problems/easy/0026-remove-duplicates-sorted-array.md) ✅ |
-| 27 | Remove Element | Two Pointers | 2026-05-15 | [View](problems/easy/0027-remove-element.md) ✅ |
-| 35 | Search Insert Position | Binary Search | 2026-05-15 | [View](problems/easy/0035-search-insert-position.md) ✅ |
-| 66 | Plus One | Array/Math | 2026-05-15 | [View](problems/easy/0066-plus-one.md) ✅ |
-| 88 | Merge Sorted Array | Two Pointers | 2026-05-15 | [View](problems/easy/0088-merge-sorted-array.md) ✅ |
+### Applied machine learning
+- **Unsupervised anomaly detection** — Isolation Forest with engineered audit features, contamination sweep, and sensitivity-controlled tuning
+- **Weak-label supervised learning** — bootstrapping training labels from rule-derived indicators to address an evidence-identified subtle-fraud gap (67% recall on subtle patterns) while keeping the model honest by excluding the rule's own flag columns from the training feature set
+- **Evidence-based model selection** — built a controlled simulation with three fraud archetypes (obvious, structured, subtle) and per-archetype recall measurement to justify a hybrid approach rather than committing to either pure paradigm
+- **Feature engineering for a regulated domain** — translating audit standards into 12 numeric features, each traceable to a specific source (AU-C 315, PCAOB AS 2401, COSO components)
 
-### Medium (4)
+### Domain modeling — accounting & audit
+- **Quantitative materiality** — FS / Performance / Transaction thresholds with entity-type calibration (Private 4%, Public 5%)
+- **Qualitative materiality override** — PCAOB AS 2401-aligned escalation rule encoding the audit principle that pattern co-occurrence is material regardless of dollar amount
+- **PCAOB-aligned labeling** — never-conclusive language ("Potential Material Weakness Indicator", "Monitor — Below Escalation Threshold") instead of definitive findings
+- **Data integrity layer** — hash total, cross-footing, date-in-period, and account-mapping checks running as a separate concern before ML scoring
+- **Audit-memo discipline** — 7-field structured output mapped to FS assertions (Occurrence, Accuracy, Cutoff, Classification, Rights & Obligations, Valuation, Completeness) and COSO components (Control Environment, Risk Assessment, Control Activities, Information & Communication, Monitoring Activities)
 
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 11 | Container with Most Water | Greedy/TP | 2026-05-15 | [View](problems/medium/0011-container-with-most-water.md) ✅ |
-| 15 | Three Sum | Two Pointers | 2026-05-15 | [View](problems/medium/0015-three-sum.md) ✅ |
-| 39 | Combination Sum | Backtracking | 2026-05-15 | [View](problems/medium/0039-combination-sum.md) ✅ |
-| 46 | Permutations | Backtracking | 2026-05-15 | [View](problems/medium/0046-permutations.md) ✅ |
+### Backend engineering
+- **FastAPI** — clean module separation (`features` / `model` / `scoring` / `integrity` / `narrative` / `narrative_validator` / `narrative_fallback` / `prompts` / `api`), typed responses, async-ready
+- **TestClient + custom acceptance suite** — 30 done-criteria asserted across Phases 1–3, plus ~145 FastAPI endpoint contract checks including 80+ Phase 4b 7-field-shape assertions and 8 validator unit tests with deliberate mutation cases
+- **Pipeline orchestration** — `run_hybrid_pipeline` ties unsupervised and supervised tracks together in a single call that's reachable both over HTTP and via direct Python import
+- **Secrets hygiene** — environment-based config with `python-dotenv`, gitignored `.env`, `git check-ignore` verification, restricted-permission API keys
+- **Graceful degradation** — narrative endpoint never raises on OpenAI errors, validator rejection, banned-phrase trips, or empty completions; every failure path routes through a deterministic fallback memo that satisfies the validator by construction
+- **Concurrent LLM generation** — per-row OpenAI calls execute in parallel via `ThreadPoolExecutor`, reducing top-N=20 wall-clock time from ~80 seconds (sequential) to ~5 seconds while preserving deterministic ordering of results
+- **Strict output validation** — independent `narrative_validator.py` checks JSON schema, per-field length bounds, follow-up list shape (3-5 items), verbatim disclaimer, banned-phrase scan, and name-leakage detection; any failure routes the row through the fallback transparently
 
----
+### Frontend engineering
+- **Next.js 14 (App Router)** with proxy configuration for backend interop
+- **shadcn/ui + Tailwind** for composable design primitives without runtime CSS overhead, plus a custom Collapsible primitive written in pure React (no Radix dependency)
+- **Interactive charting** with Plotly via `react-plotly.js`
+- **Multi-state UI** — form validation, file upload, async analysis triggering, sortable/paginated/exportable result table
+- **Explicit 4-section workflow** — engagement setup → data quality & risk signals → risk overview → flagged transaction review, with the data-integrity and feature-engineering panels collapsed to 1-line summaries by default to compact diagnostic content
+- **Row-level expanders + conditional rendering** — clicking a flagged row reveals the full 7-field AI memo in a card-with-hierarchy layout (large risk_summary headline, 2x2 grid of structured fields, bulleted recommended procedures, muted disclaimer); CSV export conditionally includes narrative columns when narratives have been generated
 
-## **DAY 2 | May 15-16, 2026 | 6 Problems (4 Easy + 2 Medium)**
+### LLM integration
+- **Cost-aware design** — Top-N capped at 20 (default 5), button-triggered generation rather than automatic, model choice (`gpt-4o-mini`) sized to task complexity; observed cost ~$0.003 per Top-10 7-field memo generation
+- **Prompt engineering for a high-stakes domain** — banned-phrase enforcement, sentence-subject discipline (transaction not person), hedged-verb requirements, explicit framing that `fraud_probability` is a resemblance score not a fraud probability, assertion-mapping guide and COSO-mapping guide embedded in the system prompt for structured field generation
+- **JSON-mode structured output** — `response_format={"type": "json_object"}` ensures the model emits parseable JSON; downstream validator enforces the strict 7-field schema before any output reaches the user
+- **Demo-relevance sort** — backend re-sorts incoming rows by final_tier → qualitative override → fraud_risk_flag → anomaly score → amount so Top-N narratives are the most audit-meaningful items, not random
+- **Post-generation validation** — JSON parse + schema check + banned-phrase scan + name-leakage detection + verbatim-disclaimer check on every memo; any failure routes through fallback so no fraud-conclusion language or hallucinated names ever reach the user
+- **Field-level differentiation verified empirically** — diagnostic curl across 3 distinct flagged rows confirmed that 5 of 6 hidden memo fields show meaningful row-to-row variation (assertion mapping, COSO mapping, follow-up procedures vary by flag pattern), with `likelihood_assessment` deliberately consistent as the most rigid hedging claim
 
-### Easy (4)
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 905 | Transform Array by Parity | Sorting | 2026-05-15 | [View](problems/easy/0905-transform-array-by-parity.md) ✅ |
-| 1679 | Count Pairs Sum < Target | Sorting | 2026-05-15 | [View](problems/easy/1679-count-pairs-sum-less-than-target.md) ✅ |
-| 2050 | Count Numbers Unique Digits | Brute Force | 2026-05-15 | [View](problems/easy/2050-count-numbers-with-unique-digits.md) ✅ |
-| 2418 | Sort the People | Sorting/Hash Map | 2026-05-15 | [View](problems/easy/2418-sort-the-people.md) ✅ |
-
-### Medium (2)
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 2541 | Min Cost Split into Ones | DP | 2026-05-15 | [View](problems/medium/2541-minimum-cost-to-split-into-ones.md) ✅ |
-| 2545 | Sort Students by Kth Score | Sorting | 2026-05-15 | [View](problems/medium/2545-sort-students-by-kth-score.md) ✅ |
-
----
-
-## **DAY 3 | May 15-16, 2026 | 4 Problems (2 Easy + 2 Medium)**
-
-### Easy (2)
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 938 | Range Sum of BST | Trees/DFS | 2026-05-15 | [View](problems/easy/0938-range-sum-of-bst.md) ✅ |
-| 1379 | Find Corresponding Node in Clone | Trees/DFS | 2026-05-15 | [View](problems/easy/1379-find-corresponding-node-of-binary-tree-in-clone.md) ✅ |
-
-### Medium (2)
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 1038 | BST to Greater Sum Tree | Trees/DFS | 2026-05-15 | [View](problems/medium/1038-bst-to-greater-sum-tree.md) ✅ |
-| 2265 | Count Nodes Equal to Average | Trees/DFS | 2026-05-15 | [View](problems/medium/2265-count-nodes-equal-to-average-of-subtree.md) ✅ |
+### Software engineering practice
+- **Git hygiene** — meaningful commit messages, staged commits per phase, branch-based workflow, nine logical commits across the build to date
+- **Pre-deployment verification** — diff-based comparison between staging files and live files before each major drop, backup snapshots, `git status` surface-area checks confirming only intended files modified, never committing untested code
+- **Reproducibility** — `requirements.txt` pinned, sample data generator (`generate_sample_gl.py`) seeded for deterministic test runs
+- **Documented decisions** — model comparison findings, phase plan, design rationales preserved in commit messages and README
 
 ---
 
-## **DATABASE SESSION | May 16, 2026 | 7 Problems (4 Easy + 2 Medium + 1 Hard)**
+## Architecture
 
-### Easy (4) - SQL
+```
+┌─────────────────────────────┐         ┌────────────────────────────────────┐
+│  Next.js frontend           │  HTTP   │  FastAPI backend                   │
+│  (React 18, shadcn/ui,      │ ──────► │  (Python 3.13)                     │
+│   Tailwind, plotly.js)      │  multi- │                                    │
+│  Section 1 — Engagement     │  part   │  features.py    cleaning + 12 feats│
+│    Setup                    │ ◄────── │  integrity.py   4 audit checks     │
+│  Section 2 — Data Quality   │  JSON   │  model.py       hybrid ML layer:   │
+│    & Risk Signals           │         │                  · Isolation Forest│
+│  Section 3 — Risk Overview  │         │                  · weak-label RF   │
+│  Section 4 — Flagged        │         │  scoring.py     materiality +      │
+│    Transaction Review       │         │                  qualitative       │
+│  (AI memo in row expanders) │         │                  override          │
+│  Port 3000 (dev)            │         │  prompts.py     audit-language     │
+│                             │         │                  system prompts    │
+│                             │         │  narrative.py   GPT orchestrator   │
+│                             │         │                  (concurrent)      │
+│                             │         │  narrative_     7-field schema +   │
+│                             │         │    validator.py  banned-phrase +   │
+│                             │         │                  name-leakage      │
+│                             │         │  narrative_     deterministic      │
+│                             │         │    fallback.py   memo by construct │
+│                             │         │  api.py         FastAPI routes     │
+│                             │         │  Port 8000 (dev)                   │
+└─────────────────────────────┘         └────────────────────────────────────┘
+```
 
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 1350 | Students Invalid Departments | JOIN/Anti-join | 2026-05-16 | [View](problems/easy/1350-students-with-invalid-departments.md) ✅ |
-| 1303 | Find Team Size | Window Functions | 2026-05-16 | [View](problems/easy/1303-find-the-team-size.md) ✅ |
-| 1757 | Recyclable and Low Fat | WHERE/AND | 2026-05-16 | [View](problems/easy/1757-recyclable-and-low-fat-products.md) ✅ |
-| 1571 | Warehouse Manager | JOIN/GROUP BY | 2026-05-16 | [View](problems/easy/1571-warehouse-manager.md) ✅ |
-
-### Medium (2) - SQL
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 3204 | Bitwise User Permissions | Bitwise/Aggregate | 2026-05-16 | [View](problems/medium/3204-bitwise-user-permissions-analysis.md) ✅ |
-| 2989 | Class Performance | Calculation | 2026-05-16 | [View](problems/medium/2989-class-performance.md) ✅ |
-
-### Hard (1) - SQL
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 3368 | First Letter Capitalization | Recursive CTE | 2026-05-16 | [View](problems/hard/3368-first-letter-capitalization.md) ✅ |
-
----
-
-## **MATRIX SESSION | May 16, 2026 | 3 Problems (2 Easy + 1 Medium)**
-
-### Easy (2)
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 1672 | Richest Customer Wealth | Row Sum/Max | 2026-05-16 | [View](problems/easy/1672-richest-customer-wealth.md) ✅ |
-| 2373 | Largest Local Values | Sliding Window | 2026-05-16 | [View](problems/easy/2373-largest-local-values-in-a-matrix.md) ✅ |
-
-### Medium (1)
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 885 | Spiral Matrix III | Simulation/Spiral | 2026-05-16 | [View](problems/medium/0885-spiral-matrix-iii.md) ✅ |
+The frontend and backend are independently deployable. The same Python pipeline is reachable via:
+- `POST /api/analyze` over HTTP — used by the Next.js UI for scoring
+- `POST /api/narratives` over HTTP — used for on-demand AI memo generation on the top-N flagged rows (returns 7 fields per row)
+- Direct import (`from features import engineer_features`) — used by `smoke_test.py` for regression testing
 
 ---
 
-## **Day 5 | May 18, 2026 | 6 Greedy Problems (3 Easy + 3 Medium)**
+## Technical requirements
 
-### Easy (3)
+### Runtime
+- **Python 3.11+** (tested on 3.13)
+- **Node.js 18+** (tested on 22)
+- **macOS, Linux, or WSL** for the dev environment
 
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 1221 | Split a String in Balanced Strings | Balance Tracking | 2026-05-18 | [View](problems/easy/1221-split-a-string-in-balanced-strings.md) ✅ |
-| 2037 | Seat Everyone | Sort + Pair | 2026-05-18 | [View](problems/easy/2037-minimum-number-of-moves-to-seat-everyone.md) ✅ |
-| 2160 | Minimum Sum Four Digits | Digit Placement | 2026-05-18 | [View](problems/easy/2160-minimum-sum-of-four-digit-number-after-splitting-digits.md) ✅ |
+### Python dependencies (backend)
+- `fastapi` + `uvicorn` — API framework and ASGI server
+- `pandas` + `numpy` — tabular data processing
+- `scikit-learn` — IsolationForest, RandomForestClassifier, StandardScaler
+- `pydantic` — request/response validation
+- `httpx` — TestClient dependency
+- `openai` (≥ 2.40) + `python-dotenv` — LLM integration and environment config
 
-### Medium (3)
+### Node dependencies (frontend)
+- `next` 14.x (App Router)
+- `react` 18.x
+- `tailwindcss` + `@radix-ui/react-*` + `class-variance-authority` (shadcn primitives)
+- `plotly.js` + `react-plotly.js`
+- `lucide-react` (icons)
 
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 1689 | Partitioning Deci-Binary | Max Digit Insight | 2026-05-18 | [View](problems/medium/1689-partitioning-into-minimum-number-of-deci-binary-numbers.md) ✅ |
-| 1874 | Minimize Product Sum | Pair Opposites | 2026-05-18 | [View](problems/medium/1874-minimize-product-sum-of-two-arrays.md) ✅ |
-| 1282 | Group People by Size | Bucket + Split | 2026-05-18 | [View](problems/medium/1282-group-the-people-given-the-group-size-they-belong-to.md) ✅ |
-
----
-
-## **Day 6 | May 19, 2026 | 3 Problems (2 Easy + 1 Medium)**
-
-### Easy (2)
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 1512 | Number of Good Pairs | Hash Map / Counting | 2026-05-19 | [View](problems/easy/1512-number-of-good-pairs.md) ✅ |
-| 3668 | Restore Finishing Order | Hash Set / Filter | 2026-05-19 | [View](problems/easy/3668-restore-finishing-order.md) ✅ |
-
-### Medium (1)
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 3760 | Maximum Substrings With Distinct Start | Hash Set / Distinct Count | 2026-05-19 | [View](problems/medium/3760-maximum-substrings-with-distinct-start.md) ✅ |
+### Phase 4 specific
+- OpenAI API key with chat completions permission, stored in `backend/.env` (gitignored)
+- Recommended spend limit: ≤ $10 hard cap (observed Phase 4 cost: under $1 across all dev iterations)
 
 ---
 
-## **Day 8 | June 4, 2026 | 20 Problems (18 Easy + 2 Medium) — Resumed after exam-week gap**
+## Model design — why hybrid fraud detection
 
-> **Catch-up session.** Took a 2-week break for finals + capstone polish + LinkedIn launch. Resumed with a deliberate "variety + volume" run. Hit 2x the original 10-problem goal across DP, Bit Manipulation, Prefix Sum, Matrix, Enumeration, Simulation, and SQL — and added 2 Mediums.
+The natural ML question for App 3 is "supervised or unsupervised?" Both approaches have a literature in fraud detection, and they make different demands. To decide deliberately, I built a controlled simulation: a 2,000-row synthetic GL with hidden ground-truth fraud labels across three archetypes (statistically obvious fraud, threshold-evading "structured" fraud, and quiet "subtle" fraud), then ran both approaches on identical data and compared.
 
-### Easy — DP / Bit Manipulation (2)
+The findings:
 
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 70 | Climbing Stairs | DP / Fibonacci | 2026-06-04 | [View](problems/easy/0070-climbing-stairs.md) ✅ |
-| 338 | Counting Bits | DP / Bit Manipulation | 2026-06-04 | [View](problems/easy/0338-counting-bits.md) ✅ |
+- **Pure unsupervised (Isolation Forest)** caught 100% of obvious fraud, 100% of structured fraud, and 67% of subtle fraud — with no labels required. This is the only mode that works on a real client's GL upload, where no fraud labels exist.
+- **Pure supervised (Random Forest)** scored higher overall, but cannot train on real GL data because it requires labels that aren't there. Its perfect score on the simulation was partly a synthetic-data artifact.
+- **The 67% subtle-fraud gap** is the real, evidence-based case for adding a supervised layer.
 
-### Easy — Sorting / Greedy (3)
+The implementation is a hybrid:
 
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 349 | Intersection of Two Arrays | Two Pointers / Hash Set | 2026-06-04 | [View](problems/easy/0349-intersection-of-two-arrays.md) ✅ |
-| 561 | Array Partition | Greedy / Sorting | 2026-06-04 | [View](problems/easy/0561-array-partition.md) ✅ |
-| 1051 | Height Checker | Sorting / Counting Sort | 2026-06-04 | [View](problems/easy/1051-height-checker.md) ✅ |
+1. **Track 1 — Unsupervised Isolation Forest** stays as the primary detector. It produces `anomaly_score` and `raw_tier`, runs on any GL upload, and doesn't depend on labels.
+2. **Track 2 — Weak-label Random Forest** trains in-process on each upload, using the rule-based `fraud_risk_flag` as a weak label. Its training features deliberately exclude the five fraud-indicator flags themselves, so the classifier cannot trivially reproduce the rule — it must learn from continuous and structural features (amount, account z-score, period-over-period change, vendor concentration, etc.). This is how it adds genuine signal for subtle fraud rather than restating what the rule already says.
+3. **The qualitative override** fires when ≥ 2 fraud indicators co-occur on a single transaction, escalating the tier *above* what materiality alone would assign. This encodes PCAOB AS 2401 qualitative materiality: the co-occurrence of red flags is material regardless of dollar amount because it suggests a control breakdown whose potential magnitude exceeds the individual transaction.
+4. **Supervised escalation** acts as a gentler secondary signal — when the classifier's `fraud_probability ≥ 0.50` and the qualitative override hasn't already fired, the tier nudges up by one level.
 
-### Easy — Enumeration (2)
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 1863 | Sum of All Subset XOR Totals | Bit Manipulation / Subset Enum | 2026-06-04 | [View](problems/easy/1863-sum-of-all-subset-xor-totals.md) ✅ |
-| 2843 | Count Symmetric Integers | Enumeration / Digit Manipulation | 2026-06-04 | [View](problems/easy/2843-count-symmetric-integers.md) ✅ |
-
-### Easy — Matrix (1)
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 1572 | Matrix Diagonal Sum | Matrix / Diagonal Indexing | 2026-06-04 | [View](problems/easy/1572-matrix-diagonal-sum.md) ✅ |
-
-### Easy — Prefix Sum (2)
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 1480 | Running Sum of 1d Array | Prefix Sum | 2026-06-04 | [View](problems/easy/1480-running-sum-of-1d-array.md) ✅ |
-| 2574 | Left and Right Sum Differences | Prefix Sum / Two Pass | 2026-06-04 | [View](problems/easy/2574-left-and-right-sum-differences.md) ✅ |
-
-### Easy — SQL (3)
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 1821 | Find Customers With Positive Revenue This Year | SQL / WHERE Filter | 2026-06-04 | [View](problems/easy/1821-find-customers-with-positive-revenue-this-year.md) ✅ |
-| 2339 | All the Matches of the League | SQL / CROSS JOIN | 2026-06-04 | [View](problems/easy/2339-all-the-matches-of-the-league.md) ✅ |
-| 2356 | Number of Unique Subjects Taught by Each Teacher | SQL / GROUP BY + COUNT DISTINCT | 2026-06-04 | [View](problems/easy/2356-number-of-unique-subjects-taught-by-each-teacher.md) ✅ |
-
-### Easy — Bit Manipulation (3)
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 1684 | Count the Number of Consistent Strings | Bit Manipulation / Set Membership | 2026-06-04 | [View](problems/easy/1684-count-the-number-of-consistent-strings.md) ✅ |
-| 2220 | Minimum Bit Flips to Convert Number | Bit Manipulation / XOR + Popcount | 2026-06-04 | [View](problems/easy/2220-minimum-bit-flips-to-convert-number.md) ✅ |
-| 3173 | Bitwise OR of Adjacent Elements | Bit Manipulation / Array Traversal | 2026-06-04 | [View](problems/easy/3173-bitwise-or-of-adjacent-elements.md) ✅ |
-
-### Easy — Simulation (2)
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 1920 | Build Array from Permutation | Simulation / In-Place Bit Packing | 2026-06-04 | [View](problems/easy/1920-build-array-from-permutation.md) ✅ |
-| 2011 | Final Value of Variable After Performing Operations | Simulation / String Inspection | 2026-06-04 | [View](problems/easy/2011-final-value-of-variable-after-performing-operations.md) ✅ |
-
-### Medium — SQL (1)
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 2084 | Drop Type 1 Orders for Customers With Type 0 Orders | SQL / Anti-Join + Window Function | 2026-06-04 | [View](problems/medium/2084-drop-type-1-orders-for-customers-with-type-0-orders.md) ✅ |
-
-### Medium — Hash / Bit Manipulation (1)
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 2657 | Find the Prefix Common Array of Two Arrays | Hash / Permutation Frequency Trick | 2026-06-04 | [View](problems/medium/2657-find-the-prefix-common-array-of-two-arrays.md) ✅ |
+The result is a layered detection system where each layer has a defined role: anomaly detection finds statistical outliers, the materiality filter applies quantitative judgment, the qualitative override applies pattern-based judgment, and the supervised layer adds a smoothed second opinion for subtle cases.
 
 ---
 
-## **Day 9 | June 5, 2026 | 10 Problems (7 Easy + 3 Medium) — Strings + Tree DFS**
+## Narrative design — why the 7-field memo, validated, and fallback-protected
 
-> **Day 2 of comeback.** Focused on strings (5 problems building from adjacent-pair to two-pass prefix sums) and tree DFS (5 problems covering all four DFS flavors: read, compare, aggregate, mutate, then composing them for the Medium).
+Phase 4 adds an LLM layer that translates already-scored findings into a structured audit memo. Each memo has seven required fields that mirror the structure of a workpaper review note:
 
-### Easy — String / Adjacent Pair (1)
+| Field | Purpose |
+|---|---|
+| `risk_summary` | 1-2 sentence hedged summary of why the transaction warrants follow-up |
+| `assertion_consideration` | Which FS assertion(s) at risk (Occurrence, Accuracy, Cutoff, Classification, etc.), with parenthetical reasoning |
+| `magnitude_assessment` | Dollar amount situated relative to materiality threshold |
+| `likelihood_assessment` | Co-occurrence reasoning — always hedged, never concludes fraud |
+| `control_or_coso_consideration` | COSO component mapping (Control Activities, Information & Communication, Risk Assessment, etc.) |
+| `recommended_follow_up` | List of 3-5 short imperative audit procedures |
+| `disclaimer` | Verbatim "This analysis identifies risk indicators only..." |
 
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 3110 | Score of a String | String / Adjacent Pair Aggregation | 2026-06-05 | [View](problems/easy/3110-score-of-a-string.md) ✅ |
+Several design choices are worth noting because they reflect the constraints of using LLMs in a regulated domain:
 
-### Easy — String / Filter (2)
+1. **Button-triggered, not automatic.** Narrative generation runs only when the user explicitly clicks **Generate AI Narrative**, with a Top-N selector (default 5, max 20). This caps cost, gives the user a chance to inspect the flagged table first, and keeps the core scoring functional even if OpenAI is unavailable.
 
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 1119 | Remove Vowels from a String | String / Filter / Set Membership | 2026-06-05 | [View](problems/easy/1119-remove-vowels-from-a-string.md) ✅ |
-| 2942 | Find Words Containing Character | String / Indexed Filter | 2026-06-05 | [View](problems/easy/2942-find-words-containing-character.md) ✅ |
+2. **Concurrent generation.** Per-row OpenAI calls execute in parallel via `ThreadPoolExecutor`. Top-N=20 finishes in ~5 seconds wall-clock instead of ~80 seconds sequential — keeping the user experience interactive while preserving deterministic ordering of results regardless of which call completes first.
 
-### Easy — Tree DFS (4)
+3. **Backend re-sorts for demo relevance.** Incoming rows are sorted by final_tier (High first) → qualitative_override (fired first) → fraud_risk_flag (fired first) → anomaly_score (most anomalous first) → amount (largest first), then the top N are passed to the model. The narratives shown are the most audit-meaningful items, not the first N in the table's visible order.
 
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 94 | Binary Tree Inorder Traversal | Tree / DFS / Iterative Stack | 2026-06-05 | [View](problems/easy/0094-binary-tree-inorder-traversal.md) ✅ |
-| 100 | Same Tree | Tree / Parallel DFS | 2026-06-05 | [View](problems/easy/0100-same-tree.md) ✅ |
-| 104 | Maximum Depth of Binary Tree | Tree / DFS Aggregation | 2026-06-05 | [View](problems/easy/0104-maximum-depth-of-binary-tree.md) ✅ |
-| 226 | Invert Binary Tree | Tree / DFS Mutation | 2026-06-05 | [View](problems/easy/0226-invert-binary-tree.md) ✅ |
+4. **Audit-language discipline is enforced at three layers.**
+   - **System prompt** instructs the model to use hedged verbs only, keep the transaction (not a person) as the subject of every sentence, ground summaries in observable facts, treat `fraud_probability` as a resemblance score, and emit strict JSON matching the 7-field schema. Embedded assertion-mapping and COSO-mapping guides constrain the model's choices to the framework vocabulary.
+   - **Validator** (`narrative_validator.py`) checks every memo against the schema, per-field length bounds, follow-up list shape (3-5 items each within length bounds), verbatim disclaimer, banned-phrase scan (18 forbidden phrases), and name-leakage patterns (no "the employee", "the manager", etc.). Any failure routes the row through the fallback.
+   - **Deterministic fallback** built from the row's own active flags produces an always-valid 7-field memo by construction (rule-based assertion and COSO mapping). The user sees a `GPT` or `Fallback` badge so the provenance is visible.
 
-### Medium — String (2)
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 1769 | Minimum Operations to Move All Balls to Each Box | String / Two-Pass Prefix Sum | 2026-06-05 | [View](problems/medium/1769-minimum-number-of-operations-to-move-all-balls-to-each-box.md) ✅ |
-| 3846 | Total Distance to Type a String Using One Finger | String / Hash Map / Manhattan | 2026-06-05 | [View](problems/medium/3846-total-distance-to-type-a-string-using-one-finger.md) ✅ |
-
-### Medium — Tree DFS (1)
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 1382 | Balance a Binary Search Tree | Tree / Inorder + Divide & Conquer Rebuild | 2026-06-05 | [View](problems/medium/1382-balance-a-binary-search-tree.md) ✅ |
+The result: memos that read like workpaper review notes (transaction-subject, hedged, grounded in observable facts) rather than confident accusations, with the entire chain auditable from prompt → model → validator → display.
 
 ---
 
-## **Day 10 | June 7, 2026 | 5 Problems (4 Easy + 1 Medium) — Hash Table Family (Light Day)**
+## Workflow UI design — why the 4-section structure
 
-> **Sustainable pacing.** Low-energy day; deliberately stayed in one pattern family. Five problems covering five distinct shades of hash-table usage: weighted counting, sparse storage, threshold-check, set membership, and partitioned max. The Medium introduced **class design** (`SparseVector`) — the first OOP problem in the log.
+The Phase 4c restructure of the frontend reflects how an auditor actually moves through a review, not how the engine happens to compute things. Four explicit numbered sections in order:
 
-### Easy — Hash Table Variants (4)
+1. **Section 1 — Engagement Setup**: client profile, materiality benchmark, audit period, CSV upload. The sidebar form stays visible while scrolling so engagement context remains anchored.
+2. **Section 2 — Data Quality & Risk Signals**: pre-ML integrity checks and feature-firing counts. Both panels collapse to 1-line summaries by default (e.g., "Data Integrity Checks · 3 Pass · 1 Warning · 0 Fail") so a quick-skim viewer doesn't get bogged down in diagnostics, but the detail is one click away.
+3. **Section 3 — Risk Overview**: summary cards (total, flagged, %, risk rating), risk-tier distribution chart, top accounts by flagged amount. The "is anything actually wrong, and where?" zone.
+4. **Section 4 — Flagged Transaction Review**: the flagged transactions table with per-row expanders that include the full 7-field AI audit memo when generated. The memo is rendered in a card-with-hierarchy layout — large `risk_summary` headline, 2×2 grid of structured fields, bulleted follow-up procedures, muted disclaimer. The AI memo is part of Section 4, not a separate section, because it's per-row analysis on top of the table.
 
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 771 | Jewels and Stones | Hash Table / Set Membership | 2026-06-07 | [View](problems/easy/0771-jewels-and-stones.md) ✅ |
-| 3289 | The Two Sneaky Numbers of Digitville | Hash Table / Increment-Then-Check | 2026-06-07 | [View](problems/easy/3289-the-two-sneaky-numbers-of-digitville.md) ✅ |
-| 3541 | Find Most Frequent Vowel and Consonant | Hash Table / Counter / Conditional Max | 2026-06-07 | [View](problems/easy/3541-find-most-frequent-vowel-and-consonant.md) ✅ |
-| 3945 | Digit Frequency Score | Hash Table / Counter / Digit | 2026-06-07 | [View](problems/easy/3945-digit-frequency-score.md) ✅ |
-
-### Medium — Class Design (1)
-
-| # | Title | Pattern | Date | Link |
-|---|-------|---------|------|------|
-| 1570 | Dot Product of Two Sparse Vectors | Hash Table / Sparse / Class Design | 2026-06-07 | [View](problems/medium/1570-dot-product-of-two-sparse-vectors.md) ✅ |
+The hierarchy makes the 60-second demo journey legible: open the app, see the engagement setup, get the data-quality-and-features signals at a glance, see the risk overview, drill into a flagged row, read the AI memo. No scrolling past irrelevant diagnostic detail to find the headline findings.
 
 ---
 
-## 🧩 Pattern Summary
+## Project structure
 
-| Pattern | Easy | Medium | Hard | Total |
-|---------|------|--------|------|-------|
-| Hash Map | 2 | 0 | 0 | 2 |
-| Hash Set | 2 | 1 | 0 | 3 |
-| Hash / Permutation Trick | 0 | 1 | 0 | 1 |
-| Hash Table / Counter | 2 | 0 | 0 | 2 |
-| Hash Table / Set Membership | 1 | 0 | 0 | 1 |
-| Hash Table / Increment-Check | 1 | 0 | 0 | 1 |
-| Hash Table / Sparse / Class | 0 | 1 | 0 | 1 |
-| Two Pointers | 4 | 1 | 0 | 5 |
-| Binary Search | 1 | 0 | 0 | 1 |
-| Backtracking | 0 | 2 | 0 | 2 |
-| Sorting | 4 | 1 | 0 | 5 |
-| Sorting/Hash Map | 1 | 0 | 0 | 1 |
-| Counting Sort | 1 | 0 | 0 | 1 |
-| DP / Fibonacci | 1 | 0 | 0 | 1 |
-| DP / Bit Manipulation | 1 | 0 | 0 | 1 |
-| DP (other) | 0 | 1 | 0 | 1 |
-| Bit Manipulation / Subset | 1 | 0 | 0 | 1 |
-| Bit Manipulation / Set | 1 | 0 | 0 | 1 |
-| Bit Manipulation / XOR | 1 | 0 | 0 | 1 |
-| Bit Manipulation / Adjacent | 1 | 0 | 0 | 1 |
-| Greedy / Sorting | 1 | 0 | 0 | 1 |
-| Greedy/TP | 0 | 1 | 0 | 1 |
-| Greedy/Balance | 1 | 0 | 0 | 1 |
-| Greedy/Sort | 1 | 0 | 0 | 1 |
-| Greedy/Digit | 1 | 0 | 0 | 1 |
-| Greedy/Bucket | 0 | 1 | 0 | 1 |
-| Greedy/Max Digit | 0 | 1 | 0 | 1 |
-| Greedy/Pair | 0 | 1 | 0 | 1 |
-| Enumeration / Digit | 1 | 0 | 0 | 1 |
-| Prefix Sum | 2 | 0 | 0 | 2 |
-| Prefix Sum / Two-Pass Sweep | 0 | 1 | 0 | 1 |
-| Matrix / Diagonal | 1 | 0 | 0 | 1 |
-| Simulation / Bit Packing | 1 | 0 | 0 | 1 |
-| Simulation / String | 1 | 0 | 0 | 1 |
-| String / Adjacent Pair | 1 | 0 | 0 | 1 |
-| String / Filter | 1 | 0 | 0 | 1 |
-| String / Indexed Filter | 1 | 0 | 0 | 1 |
-| String / Hash Map / Manhattan | 0 | 1 | 0 | 1 |
-| String (basic) | 1 | 0 | 0 | 1 |
-| Array/Math | 1 | 0 | 0 | 1 |
-| Brute Force | 1 | 0 | 0 | 1 |
-| Trees/DFS (Day 3) | 2 | 2 | 0 | 4 |
-| Tree DFS / Inorder | 1 | 0 | 0 | 1 |
-| Tree DFS / Parallel | 1 | 0 | 0 | 1 |
-| Tree DFS / Aggregation | 1 | 0 | 0 | 1 |
-| Tree DFS / Mutation | 1 | 0 | 0 | 1 |
-| Tree DFS / Inorder + Rebuild | 0 | 1 | 0 | 1 |
-| SQL/Bitwise | 0 | 1 | 0 | 1 |
-| SQL/JOIN | 1 | 0 | 0 | 1 |
-| SQL/Window Fn | 1 | 0 | 0 | 1 |
-| SQL/Calculation | 0 | 1 | 0 | 1 |
-| SQL/Recursive CTE | 0 | 0 | 1 | 1 |
-| SQL/WHERE Filter | 1 | 0 | 0 | 1 |
-| SQL/CROSS JOIN | 1 | 0 | 0 | 1 |
-| SQL/GROUP BY + DISTINCT | 1 | 0 | 0 | 1 |
-| SQL/Anti-Join | 0 | 1 | 0 | 1 |
-| Matrix/Row Sum | 1 | 0 | 0 | 1 |
-| Matrix/Sliding Win | 1 | 0 | 0 | 1 |
-| Matrix/Spiral | 0 | 1 | 0 | 1 |
-| **Total** | **55** | **20** | **1** | **76** |
+```
+app3/
+├── backend/
+│   ├── api.py                     FastAPI app — /api/analyze, /api/narratives, /api/options, /api/healthz
+│   ├── api_test.py                End-to-end tests using TestClient (~145 assertions)
+│   ├── features.py                Cleaning + 12 engineered features (6 T1 for ML, 6 T2 for display)
+│   ├── integrity.py               4 pre-analysis data integrity checks
+│   ├── model.py                   Hybrid ML layer: IsolationForest + weak-label RandomForest
+│   ├── scoring.py                 Materiality filter + qualitative override + supervised escalation
+│   ├── prompts.py                 System prompts (risk_summary + full 7-field memo) + 18 banned phrases
+│   ├── narrative.py               GPT orchestrator, demo-relevance sort, concurrent ThreadPoolExecutor
+│   ├── narrative_validator.py     7-field schema + banned-phrase + length + name-leakage validator
+│   ├── narrative_fallback.py      Deterministic fallback memo (validator-passing by construction)
+│   ├── generate_sample_gl.py      2,000-row simulated GL with planted anomalies
+│   ├── smoke_test.py              Asserts 30 Phase 1 + Phase 2 + Phase 3 done-criteria
+│   ├── requirements.txt
+│   ├── .env                       Local secrets (gitignored)
+│   └── sample_data/
+│       └── sample_gl.csv          Generated demo data
+│
+└── frontend/
+    ├── app/
+    │   ├── layout.jsx
+    │   ├── page.jsx               Main analyzer page with explicit Section 1/2/3/4 structure
+    │   └── globals.css
+    ├── components/
+    │   ├── ClientProfileForm.jsx
+    │   ├── CsvUpload.jsx
+    │   ├── IntegrityPanel.jsx     Collapsible 1-line summary by default
+    │   ├── FeatureFiringPanel.jsx Collapsible 1-line summary by default
+    │   ├── SummaryCards.jsx
+    │   ├── MaterialityBanner.jsx
+    │   ├── RiskDistributionChart.jsx
+    │   ├── TopAccountsChart.jsx
+    │   ├── FlaggedTable.jsx       Table + Top-N controls + 7-field memo card-with-hierarchy in row expanders
+    │   └── ui/                    shadcn primitives + custom Collapsible
+    │       ├── badge.jsx
+    │       ├── button.jsx
+    │       ├── card.jsx
+    │       ├── collapsible.jsx    Pure-React disclosure, no Radix dependency
+    │       ├── input.jsx
+    │       ├── label.jsx
+    │       └── select.jsx
+    ├── lib/
+    │   ├── api.js                 Thin fetch wrapper for the FastAPI endpoints
+    │   └── utils.js               shadcn cn() helper
+    ├── .env.local.example         Documents optional NEXT_PUBLIC_API_BASE_URL override
+    ├── next.config.js             Proxies /api/* to FastAPI (localhost:8000) in dev
+    ├── tailwind.config.js
+    └── package.json
+```
+
+Planned additions in Phase 5: `backend/standards_grounding.py` (rule-based mapping from row attributes to AS 5 / AS 2401 / AS 3 / COSO citations) + corresponding `frontend/components/StandardsGrounding.jsx` rendering the citations inline at the bottom of each row expander.
 
 ---
 
-## 📚 Key Learnings
+## Running locally
 
-### Day 1-2: Arrays & Sorting
-- Hash map for O(n) lookups
-- Two-pointer technique for sorted arrays
-- Sorting with custom keys in Python
-- Greedy algorithms
+### Backend (terminal 1)
 
-### Day 3: Trees & DFS
-- Post-order traversal for subtree aggregation
-- Tuple returns `(sum, count)` pattern
-- Parallel tree traversal
-- BST properties for optimization
+```bash
+cd backend
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python generate_sample_gl.py     # creates sample_data/sample_gl.csv
+python smoke_test.py             # verifies 30 acceptance criteria pass
+uvicorn api:app --reload --port 8000
+```
 
-### Database: SQL Patterns
-- Aggregate functions (BIT_AND, BIT_OR, COUNT, MAX, MIN)
-- Anti-join pattern (LEFT JOIN + IS NULL)
-- Window functions (PARTITION BY)
-- Recursive CTE for iterative processing
-- String manipulation with REGEXP
+The FastAPI server is now serving on `http://localhost:8000`. Hit `/api/healthz` to verify — should return `{"status":"ok","version":"0.4.1"}`.
 
-### Matrix: Traversal Patterns
-- Row sum and max finding
-- 2D sliding window (3×3)
-- Spiral traversal with direction vectors
-- Step size patterns (1,1,2,2,3,3...)
-- **(Day 8)** Diagonal indexing: `(i, i)` for primary, `(i, n-1-i)` for secondary; odd-n requires center-cell correction
+### Frontend (terminal 2)
 
-### Day 5: Greedy Algorithm
-- Max digit = bottleneck (deci-binary)
-- Pair opposites for minimization
-- Balance tracking for greedy splits
-- Sorting for optimal assignment
-- Digit placement strategy
-- Bucketing + greedy filling
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-### Day 6: Hash-Based Counting
-- Streaming hash map for pair counting: `ans += counts[x]; counts[x] += 1`
-- Set membership for filter-preserving-order
-- Distinct-count collapse: max splits with distinct property = number of distinct elements
+Open `http://localhost:3000`. Upload `backend/sample_data/sample_gl.csv`, click **Run Analysis**, and the full pipeline runs end-to-end against the FastAPI backend. To see the AI narrative layer in action, click **Generate AI Narrative** above the flagged transactions table — the top-N memos (default 5, max 20) generate concurrently in roughly 5 seconds and render inside row expanders as you click them.
 
-### Day 8: Multi-Pattern Recovery Session (20 problems)
+### Phase 4 prerequisites
 
-**DP & Recurrences**
-- **DP / Fibonacci:** two-variable rolling (`prev2, prev1 = prev1, prev1 + prev2`)
-- **Bit Manipulation DP:** `ans[i] = ans[i>>1] + (i & 1)` for popcount in O(n)
-- **Memoization vs bottom-up:** `@lru_cache` is plan B; bottom-up shows you understand dependency order
+Create `backend/.env` containing:
+```
+OPENAI_API_KEY=sk-...
+```
+Verify it's gitignored: `git check-ignore -v backend/.env` should print a matching `.gitignore` line. The narrative endpoint falls back to deterministic templates if the key is missing or invalid — the app stays usable either way, but live AI narratives require a valid key.
 
-**Bit Manipulation Toolkit**
-- **XOR + popcount template:** `popcount(a ^ b)` counts differing bits
-- **OR-shift identity for subset XOR sum:** answer = `OR(nums) << (n-1)`
-- **Bitmask as set:** 26-bit integer = set of lowercase letters
-- **Adjacent-pair operations:** `[a | b for a, b in zip(nums, nums[1:])]`
-- **Brian Kernighan trick:** `x &= x - 1` clears lowest set bit
+### Running the test suite
 
-**Sorting & Greedy**
-- **Greedy pairing (LC 561):** sort, take every even index
-- **Counting sort:** O(n + R) for bounded value ranges
-- **Set intersection vs two-pointer:** sets win on clarity, TP on already-sorted input
+```bash
+cd backend
+source .venv/bin/activate
+python smoke_test.py             # Phase 1 + Phase 2 + Phase 3 pipeline criteria (30)
+python api_test.py               # FastAPI endpoint contract (~145 checks including Phase 4b validator tests)
+```
 
-**Permutation & Frequency**
-- **Permutation frequency trick (LC 2657):** when both arrays are permutations, `freq[v]` ≤ 2
-- **Increment-then-check pattern:** `counter[key] += 1; if counter[key] == THRESHOLD: action()`
-
-**Enumeration & Digit**
-- **Digit-symmetric trick:** 2-digit symmetric numbers are exactly multiples of 11 in [11, 99]
-- **String vs arithmetic digit extraction:** trade-offs by language
-
-**Matrix**
-- **Diagonals:** odd-n center cell on both → subtract once
-
-**Prefix Sum**
-- **Store-before-update pattern:** record running sum BEFORE adding current
-- **Total trick:** `rightSum = total - leftSum - nums[i]`
-- **In-place running sum:** read previous (already-cumulative) cell
-- **`itertools.accumulate`:** Python's superpower for any associative reduction
-
-**Simulation & In-Place Tricks**
-- **Bit-packing for O(1) space (LC 1920):** `cell = old + n*new`; decode with `% n` and `// n`
-- **"Stateless map → sum" pattern:** when each element transforms independently
-- **The "just a return" recognition:** if there's no running state between iterations
-
-**SQL Patterns (4 new)**
-- **WHERE filter (LC 1821):** simplest SQL primitive
-- **CROSS JOIN (LC 2339):** ordered pairs with `!=`, unordered with `<`
-- **GROUP BY + COUNT DISTINCT (LC 2356):** dedupe BEFORE counting
-- **Anti-join (LC 2084):** three idioms — `NOT EXISTS`, `NOT IN`, `LEFT JOIN ... IS NULL`
-
-### Day 9: Strings + Tree DFS Toolkit (10 problems)
-
-**String / Pairwise Aggregation**
-- **Adjacent-pair template (LC 3110):** `sum(op(a, b) for a, b in zip(seq, seq[1:]))` — same skeleton as Day 8's LC 3173
-- **Score as "total variation"** — sum of absolute differences across consecutive elements
-
-**String / Filtering**
-- **Filter pattern (LC 1119):** `''.join(c for c in s if predicate(c))`
-- **Critical Python habit:** NEVER use `+=` in a loop to build a string — it's O(n²)
-
-**String / Indexed Iteration**
-- **`enumerate` (LC 2942):** when you need BOTH index and value
-- **Indexed-filter pattern:** `[i for i, x in enumerate(items) if predicate(x)]`
-
-**String / 2D Coordinates**
-- **Manhattan distance + position lookup (LC 3846):** build `char → (row, col)` dict ONCE
-- **Connection to LC 3110:** Manhattan distance is the 2D version of `abs(ord(a) - ord(b))`
-
-**String / Prefix Sum / Two-Pass Sweep**
-- **Two-pass directional sweep (LC 1769):** decompose "sum over all pairs" into left + right contributions
-- **The running update trick:** `cost += balls` per step
-- **Same skeleton as Day 8's LC 2574**
-
-**Tree DFS — The Four Flavors**
-- **DFS to produce a list (LC 94 Inorder):** Left → Node → Right; for BSTs gives sorted output
-- **DFS to compare two trees (LC 100 Same Tree):** parallel recursion with three base cases
-- **DFS to aggregate a value (LC 104 Max Depth):** divide-and-conquer skeleton `1 + max(L, R)`
-- **DFS to mutate the tree (LC 226 Invert):** Python's tuple-swap `node.left, node.right = node.right, node.left`
-
-**Tree DFS — Composition (Medium)**
-- **Two-phase pattern (LC 1382 Balance BST):** Phase 1 inorder → sorted array. Phase 2 recursive middle-as-root build
-- **Overflow-safe middle formula:** `start + (end - start) // 2`
-
-**Debugging Lessons**
-- **Method name consistency:** Python's "Did you mean?" error suggests misspelled definition
-- **Copy-paste typo on `root.left` vs `root.right`** in inorder traversal
-- **Sign flip in math formulas** — accidentally works for some inputs
-
-### Day 10: Hash Table Family Deep Dive (5 problems, light day)
-
-**The hash table is a universal tool** — these 5 problems show 5 distinct shades:
-
-**Hash Table / Counter for Weighted Sum (LC 3945)**
-- **`Counter(str(n))`** for digit frequency; `sum(int(d) * count for d, count in items())` is the universal weighted-counter idiom
-- **Two extraction methods:** `str(n)` for Python clarity; mod/divide for language-agnostic code
-- **"Stateless map → sum" pattern strikes again** — same shape as LC 2011
-
-**Hash Table / Sparse Storage + Class Design (LC 1570)** ⭐ first OOP
-- **Sparse representation:** `{index: value}` for nonzero entries only — skip the zeros entirely
-- **Class design fundamentals:** a class is **data structure + operations**, encapsulated
-- **The follow-up insight:** "what if one is dense?" → switch from hash lookup to direct array indexing
-- **Real-world connection:** scipy.sparse, ML feature vectors, graph adjacency lists all use this idea
-- **Time complexity nuance:** iterate the smaller dict; for similar sizes, two-pointer on sorted tuples is cache-friendly
-
-**Hash Table / Increment-Then-Check (LC 3289)** — third encounter
-- The idiom `counter[key] += 1; if counter[key] == THRESHOLD: action()` is among the most reused in counting algorithms
-- **For "find duplicates" specifically:** a set of "seen" is simpler than a full counter — choose the lightest data structure that solves the problem
-- **Math alternative:** sum + sum-of-squares can solve in O(1) space (elegant but easy to mess up; mention but don't write in interviews)
-
-**Hash Table / Set Membership (LC 771)**
-- **The most reused micro-pattern in interviews:** `sum(s in lookup_set for s in items)`
-- Convert lookup data to a set ONCE when you'll query it many times — O(J) to build, O(1) per lookup
-- **Boolean-summing:** `True == 1`, `False == 0`; `sum(boolean_generator)` is a counting idiom
-- **Bitmask as set** is even tighter for small fixed alphabets (LC 1684 connection)
-
-**Hash Table / Counter + Partitioned Max (LC 3541)**
-- **`max(iterable, default=value)`** — the elegant way to handle "max if any exist, else sentinel"
-- The `default=` keyword (Python 3.4+) replaces verbose "check if list is empty" patterns
-- **The "boolean partition + max" pattern:** classify items into categories, find max within each — same structure for "max stock weekdays vs weekends," "max score by gender," etc.
-- **Generators vs list comps:** generators for one-shot use in `sum`, `max`, `min`, `any`, `all`
-
-**Cross-pattern recognition (the meta-skill):**
-
-Day 10 explicitly drilled "same pattern family, different surface forms." Recognizing this is the inflection point in interview prep — when you stop solving individual problems and start seeing template families.
-
-The hash-table family alone covers:
-- Counting (weighted, threshold, frequency-based)
-- Storage (sparse, dense, indexed)
-- Lookup (set membership, key existence)
-- Aggregation (sum, max within filtered subset)
-- Class design (encapsulating the above)
-
-When you see a new problem, the first question is now: **"which hash-table sub-pattern fits here?"**
+`api_test.py` deliberately clears `OPENAI_API_KEY` so it exercises the fallback path without making real API calls. Real LLM testing is done in the browser against a running server.
 
 ---
 
-## 📚 Notes
+## Audit theory references
 
-Each problem file includes:
-- ✅ Understanding the Goal
-- ✅ LAYER 1: Line-by-line code explanation (with heavy inline comments)
-- ✅ LAYER 2: Worked examples with traces
-- ✅ LAYER 3: Key insights & complexity
-- ✅ LAYER 4: Interview variations
-- ✅ LAYER 5: Cheat sheet entry
+The 12 features, the materiality filter, the qualitative override, and the narrative prompts are anchored to specific audit-standard sources:
 
-**Patterns Cheat Sheet:** See `notes/patterns.md`
+| Feature / mechanism | Source | What it captures |
+|---|---|---|
+| `amount_zscore_by_account` | AU-C 315, ARP | Account-level magnitude deviation |
+| `is_round_number` | PCAOB AS 2401 | Manual entry / estimate red flag |
+| `is_weekend_posting` | Control activities | Unusual posting timing |
+| `missing_description` | Information & communication (COSO) | Documentation control gap |
+| `is_new_vendor` | Fraud risk factors | Misappropriation opportunity |
+| `is_near_approval_threshold` | IT controls / limit tests | Invoice splitting / approval avoidance |
+| Materiality filter | PCAOB AS 5 | Quantitative severity-of-deficiency framework |
+| Qualitative override | PCAOB AS 2401, AS 5 | Co-occurrence of fraud indicators is material regardless of amount because it signals a control breakdown |
+| PCAOB labels | PCAOB AS 5 | "Potential Material Weakness Indicator", etc. |
+| Narrative — hedged language | AU-C 315, PCAOB AS 2401 | Risk-indicator framing, never fraud conclusions |
+| Narrative — subject discipline | Audit professional standards | Transaction/control as subject, not the person who recorded it |
+| Memo — `assertion_consideration` | AU-C 315, FS assertions framework | Occurrence, Accuracy, Cutoff, Classification, Rights & Obligations, Valuation, Completeness |
+| Memo — `control_or_coso_consideration` | COSO 2013 framework | Control Environment, Risk Assessment, Control Activities, Information & Communication, Monitoring Activities |
+
+Phase 5 will add a structured Standards Grounding panel below each memo that surfaces explicit AS 5 / AS 2401 / AS 3 / COSO citations via a rule-based mapping rather than free-form LLM citation, to keep regulatory references deterministic and auditable.
 
 ---
 
-**Last Updated:** June 7, 2026 | 76 Problems Solved ✅
+## Future improvements (Phase 5)
 
-**Next:** W3 — Sliding Window & Stack (Medium-difficulty pattern drill); plan to add review days for already-solved problems
+Items planned to bring the project to demo-ready and deployable state:
+
+- **Standards Grounding panel** — backend-derived rule-based mapping from row attributes to 4 fixed framework categories (PCAOB AS 5, AS 2401, AS 3, COSO), rendered inline at the bottom of each row expander
+- **CSV export expansion** — surface all 7 memo fields in the downloaded CSV (currently only `risk_summary` + `narrative_status` are exported), so the user can take all the audit reasoning into their workpapers
+- **Deployment** — Vercel (frontend) + Render or Fly.io (backend), ≈ $5-7/mo, custom subdomain, server-side `OPENAI_API_KEY` as secret
+- **README finalization + product naming** — settle the product name (candidates: NEXUS, INDICIA, LUMEN, FORUM, VERITAS, AUSPEX, SAGE, PROBE, LAUREL, PARSE), update README and repository name accordingly
+- **Excel workbook export** — multi-sheet `.xlsx` via `openpyxl`: summary, flagged transactions, integrity findings, narrative memos
+- **Period-over-period fluctuation table** — account-level variance analysis as a separate analytical procedure
+- **Frontend badge column** — visible "Override" and "Fraud Prob" cells in the flagged table (currently in the API response and the row expander, but not as visible columns)
+- **CI/CD** — GitHub Actions running `smoke_test.py` and `api_test.py` on every push
+- **API observability** — structured logging for narrative-layer cost and latency tracking
+- **Multi-period support** — comparison mode across two uploaded GL periods
+
+---
+
+## Methodology and limitations
+
+This tool identifies *risk indicators* using statistical anomaly detection, weak-label supervised classification, and materiality thresholds. It does not determine intent, conclude fraud, or issue audit opinions. The PCAOB-aligned labels use "Potential", "Indicator", and "Monitor" throughout — never definitive language.
+
+The supervised layer is trained on weak labels derived from rule-based fraud indicators, then applied in-process to the same upload. The honest interpretation of its `fraud_probability` is "this transaction resembles the rule-flagged transactions in continuous-feature space" — it is a smoothing of the rule rather than an independent validator. The qualitative override and supervised escalation are designed to never lower a tier, only raise it, so the materiality filter's conservative output remains the floor.
+
+The GPT narrative layer is constrained to risk-indication language with explicit banned phrases ("fraud occurred," "the perpetrator," "this proves," etc.) enforced both in the system prompt and in a post-generation validator. Any banned-phrase trip, schema violation, length bound violation, name-leakage pattern, or non-verbatim disclaimer routes the row through a deterministic fallback memo that satisfies the same validator by construction. The layer translates already-scored results into hedged audit-review memos; it does not extend the scoring logic itself, and it cannot conclude fraud or issue an audit opinion regardless of how the underlying ML output is interpreted.
+
+Findings should be corroborated with documentary evidence and discussions with management consistent with AU-C 315 (Understanding the Entity and Its Environment) and PCAOB AS 2401 (Consideration of Fraud in a Financial Statement Audit).
+
+Sample data is simulated. The cross-footing integrity check often produces a warning on QuickBooks-style "one row per leg" GL exports — this is expected and demonstrates the integrity layer working on realistic input rather than indicating a tool defect.
+
+This project is a portfolio piece, not production audit software. It is not affiliated with any audit firm, and its outputs are not a substitute for professional auditor judgment.
