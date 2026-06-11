@@ -27,7 +27,7 @@ Upload a GL CSV, configure the client profile (entity type, materiality benchmar
 
 1. **Validates** the file structure and required columns
 2. **Cleans** and coerces dtypes (date → datetime, amount → numeric, derives `abs_amount`)
-3. **Engineers 12 audit-domain features** — 6 Tier 1 features that feed the ML model (account-level magnitude z-score, round number, weekend posting, missing description, new vendor, near approval threshold) plus 6 Tier 2 features for display and override logic (control gap score, fraud risk flag, period-over-period %, vendor concentration %, year-end concentration, non-standard DR/CR pattern)
+3. **Engineers 12 audit-domain features** — 6 Tier 1 features that feed the ML model (account-level magnitude z-score, round number, weekend posting, missing description, new vendor, near approval threshold) plus 6 Tier 2 mechanisms — 7 output columns — for display and override logic (control gap score, fraud-flag count + fraud risk flag, period-over-period %, vendor concentration %, year-end concentration, non-standard DR/CR pattern)
 4. **Runs 4 data integrity checks** — hash total, cross-footing, date-in-period, account mapping
 5. **Scores anomalies** with a hybrid ML layer: unsupervised Isolation Forest (200 trees, sensitivity-controlled contamination) for label-free anomaly detection, plus a weak-label supervised classifier that catches subtle fraud the unsupervised layer misses
 6. **Applies the materiality filter** — downgrades or escalates the raw ML tier based on whether the dollar amount exceeds Performance / Transaction materiality
@@ -51,7 +51,7 @@ This project exercises a deliberate breadth across full-stack engineering, appli
 - **Feature engineering for a regulated domain** — translating audit standards into 12 numeric features, each traceable to a specific source (AU-C 315, PCAOB AS 2401, COSO components)
 
 ### Domain modeling — accounting & audit
-- **Quantitative materiality** — FS / Performance / Transaction thresholds with entity-type calibration (Private 4%, Public 5%)
+- **Quantitative materiality** — FS / Performance / Transaction thresholds with entity-type calibration (Public company 5%; Private for-profit, Non-profit, and Fund all 4% — entity type changes only the benchmark label, not the percentage)
 - **Qualitative materiality override** — PCAOB AS 2401-aligned escalation rule encoding the audit principle that pattern co-occurrence is material regardless of dollar amount
 - **PCAOB-aligned labeling** — never-conclusive language ("Potential Material Weakness Indicator", "Monitor — Below Escalation Threshold") instead of definitive findings
 - **Data integrity layer** — hash total, cross-footing, date-in-period, and account-mapping checks running as a separate concern before ML scoring
@@ -359,6 +359,8 @@ Items planned to bring the project to demo-ready and deployable state:
 - **Excel workbook export** — multi-sheet `.xlsx` via `openpyxl`: summary, flagged transactions, integrity findings, narrative memos
 - **Period-over-period fluctuation table** — account-level variance analysis as a separate analytical procedure
 - **Frontend badge column** — visible "Override" and "Fraud Prob" cells in the flagged table (currently in the API response and the row expander, but not as visible columns)
+- **`fraud_probability` relabel** — the system prompt already frames the supervised score as "not a fraud probability," but the UI still displays "Fraud probability" and `scoring.py`'s escalation note emits `P(fraud)=…`. Rename the displayed label and that note string to "Risk-Pattern Similarity" so user-facing language matches the risk-indication framing; the internal column name can stay
+- **Centralize narrative transport** — move the inline `/api/narratives` fetch out of `FlaggedTable.jsx` into `lib/api.js` as `generateNarratives()`, matching how `analyze()` is structured
 - **CI/CD** — GitHub Actions running `smoke_test.py` and `api_test.py` on every push
 - **API observability** — structured logging for narrative-layer cost and latency tracking
 - **Multi-period support** — comparison mode across two uploaded GL periods
