@@ -1,9 +1,9 @@
-# AI Audit Risk Analyzer
+# ARGUS — Audit Risk Guidance, Unified System
 
 > **Status:** Phase 4 shipped · Phase 5 planned · **Phase 4 shipped Jun 9, 2026**
 > **Stack:** FastAPI · Next.js 14 · scikit-learn · OpenAI · Tailwind · shadcn/ui · Plotly
 
-ML anomaly detection + materiality-calibrated risk scoring + PCAOB-aligned labels for QuickBooks GL exports, with a live LLM narrative layer that translates findings into hedged, framework-grounded audit review memos.
+ML anomaly detection + materiality-calibrated risk scoring + PCAOB-aligned labels for QuickBooks general ledgers, with a live LLM narrative layer that translates findings into hedged, framework-grounded audit review memos.
 
 A generalized audit software (GAS) prototype that automates transaction-level analytical review procedures (ARP) on SMB general ledger data. Built as a portfolio piece exploring the intersection of accounting standards, machine learning, and LLM-driven narrative generation.
 
@@ -355,7 +355,7 @@ Items planned to bring the project to demo-ready and deployable state:
 - **Standards Grounding panel** — backend-derived rule-based mapping from row attributes to 4 fixed framework categories (PCAOB AS 5, AS 2401, AS 3, COSO), rendered inline at the bottom of each row expander
 - **CSV export expansion** — surface all 7 memo fields in the downloaded CSV (currently only `risk_summary` + `narrative_status` are exported), so the user can take all the audit reasoning into their workpapers
 - **Deployment** — Vercel (frontend) + Render or Fly.io (backend), ≈ $5-7/mo, custom subdomain, server-side `OPENAI_API_KEY` as secret
-- **README finalization + product naming** — settle the product name (candidates: NEXUS, INDICIA, LUMEN, FORUM, VERITAS, AUSPEX, SAGE, PROBE, LAUREL, PARSE), update README and repository name accordingly
+- **Repository rename** — product named **ARGUS** (Audit Risk Guidance, Unified System); rename the GitHub repo `ai-audit-risk-analyzer` → `argus-audit-risk-analyzer` to match the README and frontend
 - **Excel workbook export** — multi-sheet `.xlsx` via `openpyxl`: summary, flagged transactions, integrity findings, narrative memos
 - **Period-over-period fluctuation table** — account-level variance analysis as a separate analytical procedure
 - **Frontend badge column** — visible "Override" and "Fraud Prob" cells in the flagged table (currently in the API response and the row expander, but not as visible columns)

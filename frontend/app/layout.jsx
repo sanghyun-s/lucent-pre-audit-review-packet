@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "AI Audit Risk Analyzer",
+  title: "ARGUS — Audit Risk Guidance, Unified System",
   description:
     "ML anomaly detection + materiality-calibrated risk scoring + PCAOB-aligned labels for QuickBooks GL exports.",
 };

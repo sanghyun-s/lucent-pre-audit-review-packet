@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Search } from "lucide-react";
+import { Eye } from "lucide-react";
 
 import ClientProfileForm   from "@/components/ClientProfileForm";
 import MaterialityBanner   from "@/components/MaterialityBanner";
@@ -88,12 +88,15 @@ export default function Page() {
     <main className="container py-8 space-y-8">
       <header className="space-y-1">
         <h1 className="text-3xl font-bold tracking-tight flex items-center gap-2">
-          <Search className="h-7 w-7" />
-          AI Audit Risk Analyzer
+          <Eye className="h-7 w-7" />
+          ARGUS
         </h1>
+        <p className="text-sm font-medium text-foreground">
+          Audit Risk Guidance · Unified System
+        </p>
         <p className="text-sm text-muted-foreground">
           ML anomaly detection + materiality-calibrated risk scoring + PCAOB-aligned
-          labels for QuickBooks GL exports.
+          labels for QuickBooks general ledgers.
         </p>
       </header>
 
