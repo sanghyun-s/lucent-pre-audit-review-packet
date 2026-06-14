@@ -1,0 +1,801 @@
+date,amount,account_code,account_name,vendor,description,journal_ref
+2024-07-19,989.72,6060,Marketing Expense,Globex Corp,Vendor payment,JE-00358
+2024-01-25,3323.12,6020,Software Subscriptions,Stark Industries,Monthly invoice,JE-00586
+2024-03-13,1768.49,6050,Utilities Expense,Wayne Enterprises,Supplies purchase,JE-00650
+2024-04-30,751.34,6090,Office Supplies,Wayne Enterprises,Maintenance work,JE-00514
+2024-04-13,4800.0,7010,Bank Fees,Brightway Group #8246,,JE-00796
+2024-02-19,3814.35,6040,Rent Expense,Globex Corp,Equipment rental,JE-00037
+2024-10-20,24000.0,6050,Utilities Expense,Quantum Ventures #6451,,JE-00742
+2024-05-16,4363.62,6020,Software Subscriptions,Cyberdyne Systems,Consulting fee,JE-00162
+2024-11-07,4346.52,6050,Utilities Expense,Initech LLC,Consulting fee,JE-00109
+2024-02-06,1315.93,6090,Office Supplies,Stark Industries,,JE-00690
+2024-02-12,1420.92,4020,Service Revenue,Vandelay Imports,Contract milestone,JE-00090
+2024-12-23,24000.0,6060,Marketing Expense,Vista Trading Co #5831,,JE-00719
+2024-03-06,1413.12,5010,Cost of Goods Sold,Hooli Inc,Contract milestone,JE-00428
+2024-01-09,1272.37,6090,Office Supplies,Globex Corp,Contract milestone,JE-00311
+2024-01-16,6064.76,6030,Insurance Expense,Hooli Inc,Service charge,JE-00216
+2024-01-28,9600.0,6090,Office Supplies,Vista Trading Co #4894,,JE-00754
+2024-11-07,5694.32,6010,Professional Fees,Tyrell Corp,Monthly invoice,JE-00128
+2024-05-15,1233.48,4020,Service Revenue,Cyberdyne Systems,Supplies purchase,JE-00637
+2024-08-09,1016.97,6060,Marketing Expense,Umbrella Co,Service charge,JE-00017
+2024-12-25,6662.16,6050,Utilities Expense,Stark Industries,Supplies purchase,JE-00006
+2024-05-09,3295.3,6080,Repairs & Maintenance,Initech LLC,Maintenance work,JE-00068
+2024-05-11,4800.0,6040,Rent Expense,Northwind Co #2229,,JE-00733
+2024-02-06,3325.33,7010,Bank Fees,Cyberdyne Systems,Consulting fee,JE-00155
+2024-07-11,5654.41,6030,Insurance Expense,Cyberdyne Systems,Consulting fee,JE-00120
+2024-10-07,4571.18,6070,Travel & Entertainment,Tyrell Corp,Equipment rental,JE-00525
+2024-02-26,2580.68,4010,Sales Revenue,Tyrell Corp,Reimbursement,JE-00459
+2024-02-02,3692.49,6080,Repairs & Maintenance,Cyberdyne Systems,Consulting fee,JE-00627
+2024-01-11,3616.15,6070,Travel & Entertainment,Acme Supplies,Maintenance work,JE-00076
+2024-12-21,24000.0,6090,Office Supplies,Maple Holdings #3827,,JE-00729
+2024-04-09,1123.83,5010,Cost of Goods Sold,Wayne Enterprises,Maintenance work,JE-00340
+2024-07-09,962.84,6090,Office Supplies,Soylent Foods,Supplies purchase,JE-00386
+2024-06-03,1786.83,6020,Software Subscriptions,Soylent Foods,Consulting fee,JE-00002
+2024-10-23,20673.51,6010,Professional Fees,Soylent Foods,Maintenance work,JE-00708
+2024-06-12,6181.78,6080,Repairs & Maintenance,Vandelay Imports,Contract milestone,JE-00078
+2024-07-08,1290.22,4020,Service Revenue,Acme Supplies,Reimbursement,JE-00345
+2024-07-28,1048.19,5010,Cost of Goods Sold,Acme Supplies,Service charge,JE-00691
+2024-03-21,8174.89,6030,Insurance Expense,Tyrell Corp,Monthly invoice,JE-00403
+2024-07-05,4936.22,6080,Repairs & Maintenance,Tyrell Corp,Equipment rental,JE-00255
+2024-08-22,5159.08,6070,Travel & Entertainment,Wayne Enterprises,Equipment rental,JE-00548
+2024-01-27,9600.0,6050,Utilities Expense,Vista Trading Co #7257,,JE-00751
+2024-11-15,2289.03,6080,Repairs & Maintenance,Globex Corp,Equipment rental,JE-00240
+2024-10-31,1157.66,6060,Marketing Expense,Umbrella Co,Equipment rental,JE-00147
+2024-04-23,2233.08,4020,Service Revenue,Tyrell Corp,Maintenance work,JE-00279
+2024-01-09,24250.0,6070,Travel & Entertainment,Wayne Enterprises,Service charge,JE-00673
+2024-09-12,1162.57,6090,Office Supplies,Cyberdyne Systems,Monthly invoice,JE-00266
+2024-05-31,3728.6,6020,Software Subscriptions,Wayne Enterprises,Subscription renewal,JE-00315
+2024-03-07,1985.55,4010,Sales Revenue,Stark Industries,Supplies purchase,JE-00380
+2024-02-29,6853.12,6050,Utilities Expense,Initech LLC,Reimbursement,JE-00354
+2024-07-02,1088.81,6060,Marketing Expense,Hooli Inc,Maintenance work,JE-00580
+2024-07-25,4166.45,6010,Professional Fees,Stark Industries,Service charge,JE-00032
+2024-03-19,3745.91,6010,Professional Fees,Umbrella Co,Monthly invoice,JE-00050
+2024-07-24,2089.88,4020,Service Revenue,Soylent Foods,Monthly invoice,JE-00494
+2024-05-26,24000.0,6050,Utilities Expense,Northwind Co #5859,,JE-00744
+2024-10-10,1725.4,4020,Service Revenue,Tyrell Corp,Equipment rental,JE-00023
+2024-08-09,3072.47,6040,Rent Expense,Globex Corp,Service charge,JE-00137
+2024-09-26,6874.28,6050,Utilities Expense,Stark Industries,,JE-00657
+2024-03-13,3325.81,6070,Travel & Entertainment,Soylent Foods,,JE-00689
+2024-02-15,3960.32,7010,Bank Fees,Stark Industries,Contract milestone,JE-00118
+2024-07-08,5722.65,6030,Insurance Expense,Umbrella Co,Contract milestone,JE-00355
+2024-06-27,1774.83,4020,Service Revenue,Tyrell Corp,Maintenance work,JE-00186
+2024-04-25,3132.0,6020,Software Subscriptions,Wayne Enterprises,Reimbursement,JE-00412
+2024-10-09,1071.02,6060,Marketing Expense,Initech LLC,Equipment rental,JE-00519
+2024-07-17,615.27,6060,Marketing Expense,Cyberdyne Systems,Maintenance work,JE-00342
+2024-11-27,4295.53,6080,Repairs & Maintenance,Soylent Foods,Service charge,JE-00599
+2024-09-02,3865.07,6070,Travel & Entertainment,Cyberdyne Systems,Maintenance work,JE-00057
+2024-11-29,27394.58,6040,Rent Expense,Acme Supplies,Service charge,JE-00685
+2024-01-17,1149.39,5010,Cost of Goods Sold,Umbrella Co,Maintenance work,JE-00195
+2024-03-12,1202.73,5010,Cost of Goods Sold,Globex Corp,Monthly invoice,JE-00156
+2024-06-03,773.62,5010,Cost of Goods Sold,Cyberdyne Systems,Service charge,JE-00175
+2024-08-01,6619.08,6040,Rent Expense,Acme Supplies,Contract milestone,JE-00328
+2024-10-07,3100.0,6040,Rent Expense,Globex Corp,Service charge,JE-00704
+2024-12-26,1266.58,6060,Marketing Expense,Soylent Foods,Subscription renewal,JE-00429
+2024-01-21,9600.0,6030,Insurance Expense,Maple Holdings #2861,,JE-00735
+2024-09-25,2078.12,4010,Sales Revenue,Cyberdyne Systems,Monthly invoice,JE-00574
+2024-04-05,4231.83,6080,Repairs & Maintenance,Wayne Enterprises,Reimbursement,JE-00422
+2024-08-02,3828.07,6070,Travel & Entertainment,Umbrella Co,Equipment rental,JE-00610
+2024-05-16,4031.66,6020,Software Subscriptions,Tyrell Corp,Supplies purchase,JE-00286
+2024-08-23,4902.91,6040,Rent Expense,Massive Dynamic,Service charge,JE-00060
+2024-05-03,3504.26,6050,Utilities Expense,Acme Supplies,Monthly invoice,JE-00456
+2024-05-16,2980.39,6050,Utilities Expense,Globex Corp,Monthly invoice,JE-00442
+2024-07-09,3816.02,6070,Travel & Entertainment,Hooli Inc,Vendor payment,JE-00464
+2024-04-08,1172.03,5010,Cost of Goods Sold,Hooli Inc,Reimbursement,JE-00249
+2024-04-12,2276.68,4010,Sales Revenue,Massive Dynamic,Supplies purchase,JE-00563
+2024-12-26,9600.0,6030,Insurance Expense,Northwind Co #8190,,JE-00779
+2024-01-03,9125.7,6030,Insurance Expense,Massive Dynamic,Subscription renewal,JE-00511
+2024-10-23,5110.67,6010,Professional Fees,Vandelay Imports,Contract milestone,JE-00159
+2024-05-22,1021.36,5010,Cost of Goods Sold,Soylent Foods,Consulting fee,JE-00346
+2024-08-07,4186.26,6040,Rent Expense,Wayne Enterprises,Vendor payment,JE-00167
+2024-12-30,4800.0,5010,Cost of Goods Sold,Maple Holdings #7423,,JE-00761
+2024-05-03,1114.57,6060,Marketing Expense,Tyrell Corp,Maintenance work,JE-00310
+2024-12-05,2075.73,4020,Service Revenue,Hooli Inc,Contract milestone,JE-00649
+2024-07-31,890.01,6060,Marketing Expense,Stark Industries,Contract milestone,JE-00214
+2024-10-08,4770.54,6030,Insurance Expense,Soylent Foods,Service charge,JE-00387
+2024-09-19,4362.42,6030,Insurance Expense,Soylent Foods,Monthly invoice,JE-00576
+2024-08-01,721.68,6090,Office Supplies,Globex Corp,Maintenance work,JE-00273
+2024-07-29,716.56,6090,Office Supplies,Vandelay Imports,Vendor payment,JE-00598
+2024-01-17,3160.28,6010,Professional Fees,Initech LLC,Vendor payment,JE-00400
+2024-11-28,6158.4,6040,Rent Expense,Umbrella Co,Consulting fee,JE-00405
+2024-01-18,2794.76,4010,Sales Revenue,Wayne Enterprises,Service charge,JE-00444
+2024-02-16,366.54,6090,Office Supplies,Stark Industries,Reimbursement,JE-00168
+2024-10-14,938.79,6060,Marketing Expense,Stark Industries,Service charge,JE-00353
+2024-12-11,1216.83,6060,Marketing Expense,Vandelay Imports,Service charge,JE-00129
+2024-12-23,3818.67,6070,Travel & Entertainment,Massive Dynamic,Reimbursement,JE-00135
+2024-01-14,4800.0,6050,Utilities Expense,Beacon LLC #3405,,JE-00781
+2024-12-06,6608.25,6040,Rent Expense,Stark Industries,Vendor payment,JE-00591
+2024-10-23,4683.96,6080,Repairs & Maintenance,Acme Supplies,Maintenance work,JE-00472
+2024-04-19,1477.04,5010,Cost of Goods Sold,Cyberdyne Systems,Reimbursement,JE-00041
+2024-09-30,750.1,6060,Marketing Expense,Acme Supplies,Vendor payment,JE-00437
+2024-12-03,3122.29,6020,Software Subscriptions,Wayne Enterprises,Reimbursement,JE-00131
+2024-12-30,4800.0,6010,Professional Fees,Apex Traders #6082,,JE-00800
+2024-08-13,2098.19,4010,Sales Revenue,Globex Corp,Supplies purchase,JE-00476
+2024-12-31,9600.0,6090,Office Supplies,Redrock LLC #9607,,JE-00734
+2024-03-18,3413.52,6010,Professional Fees,Soylent Foods,Reimbursement,JE-00339
+2024-11-19,4101.26,6070,Travel & Entertainment,Wayne Enterprises,Consulting fee,JE-00615
+2024-06-12,6389.41,6040,Rent Expense,Massive Dynamic,Equipment rental,JE-00343
+2024-02-15,1379.38,4020,Service Revenue,Hooli Inc,Vendor payment,JE-00481
+2024-12-13,1265.38,6090,Office Supplies,Umbrella Co,Vendor payment,JE-00205
+2024-02-03,9600.0,6010,Professional Fees,Northwind Co #7925,,JE-00768
+2024-01-22,888.97,6060,Marketing Expense,Acme Supplies,Reimbursement,JE-00062
+2024-09-09,2236.81,4020,Service Revenue,Vandelay Imports,Subscription renewal,JE-00618
+2024-09-06,1243.31,5010,Cost of Goods Sold,Soylent Foods,Reimbursement,JE-00172
+2024-11-11,1134.82,5010,Cost of Goods Sold,Acme Supplies,Monthly invoice,JE-00209
+2024-01-09,3546.63,4010,Sales Revenue,Umbrella Co,Service charge,JE-00334
+2024-02-05,2659.24,6080,Repairs & Maintenance,Massive Dynamic,Maintenance work,JE-00285
+2024-07-26,2163.8,4020,Service Revenue,Cyberdyne Systems,Consulting fee,JE-00578
+2024-05-20,6529.14,6030,Insurance Expense,Hooli Inc,Reimbursement,JE-00268
+2024-07-15,1047.09,4020,Service Revenue,Umbrella Co,Subscription renewal,JE-00336
+2024-07-05,803.22,5010,Cost of Goods Sold,Acme Supplies,Supplies purchase,JE-00505
+2024-08-27,1479.87,4010,Sales Revenue,Acme Supplies,Maintenance work,JE-00243
+2024-07-25,6945.05,6030,Insurance Expense,Tyrell Corp,Maintenance work,JE-00379
+2024-09-17,6412.9,6040,Rent Expense,Massive Dynamic,Vendor payment,JE-00289
+2024-05-07,4801.85,6050,Utilities Expense,Acme Supplies,Subscription renewal,JE-00573
+2024-10-14,3977.51,6070,Travel & Entertainment,Hooli Inc,Vendor payment,JE-00399
+2024-02-21,1004.14,6090,Office Supplies,Vandelay Imports,Consulting fee,JE-00149
+2024-04-26,4259.76,6040,Rent Expense,Hooli Inc,Reimbursement,JE-00236
+2024-08-08,1018.55,6090,Office Supplies,Wayne Enterprises,Service charge,JE-00303
+2024-12-22,24000.0,6010,Professional Fees,Maple Holdings #3738,,JE-00794
+2024-10-30,4539.38,6020,Software Subscriptions,Umbrella Co,Equipment rental,JE-00274
+2024-09-10,1536.84,5010,Cost of Goods Sold,Hooli Inc,Contract milestone,JE-00207
+2024-07-01,24250.0,4020,Service Revenue,Massive Dynamic,Reimbursement,JE-00664
+2024-10-30,895.24,6090,Office Supplies,Umbrella Co,Equipment rental,JE-00251
+2024-11-28,3479.3,7010,Bank Fees,Vandelay Imports,Vendor payment,JE-00204
+2024-11-18,1083.19,5010,Cost of Goods Sold,Soylent Foods,Monthly invoice,JE-00042
+2024-01-26,4384.87,6050,Utilities Expense,Acme Supplies,Subscription renewal,JE-00158
+2024-12-27,3056.39,4010,Sales Revenue,Tyrell Corp,Equipment rental,JE-00466
+2024-06-21,1226.55,4020,Service Revenue,Massive Dynamic,Consulting fee,JE-00351
+2024-10-01,4423.24,6080,Repairs & Maintenance,Massive Dynamic,Service charge,JE-00022
+2024-10-30,3455.11,7010,Bank Fees,Acme Supplies,Service charge,JE-00570
+2024-12-11,7460.69,6040,Rent Expense,Soylent Foods,Vendor payment,JE-00210
+2024-07-10,803.57,6060,Marketing Expense,Vandelay Imports,Maintenance work,JE-00522
+2024-09-02,1026.68,5010,Cost of Goods Sold,Tyrell Corp,Reimbursement,JE-00102
+2024-12-30,4926.82,6030,Insurance Expense,Globex Corp,Equipment rental,JE-00029
+2024-11-19,5574.22,6040,Rent Expense,Wayne Enterprises,Vendor payment,JE-00572
+2024-09-20,3931.33,6050,Utilities Expense,Cyberdyne Systems,Reimbursement,JE-00635
+2024-02-28,7483.67,6030,Insurance Expense,Hooli Inc,Equipment rental,JE-00145
+2024-03-22,3944.9,6040,Rent Expense,Soylent Foods,Reimbursement,JE-00568
+2024-10-01,996.48,6060,Marketing Expense,Tyrell Corp,Consulting fee,JE-00256
+2024-03-13,1117.29,5010,Cost of Goods Sold,Cyberdyne Systems,Supplies purchase,JE-00301
+2024-10-15,5575.04,6010,Professional Fees,Soylent Foods,Service charge,JE-00103
+2024-04-26,808.57,6090,Office Supplies,Soylent Foods,Vendor payment,JE-00448
+2024-11-20,8453.11,6040,Rent Expense,Soylent Foods,Equipment rental,JE-00305
+2024-11-05,7633.08,6050,Utilities Expense,Wayne Enterprises,Supplies purchase,JE-00121
+2024-06-20,853.64,6090,Office Supplies,Acme Supplies,Service charge,JE-00015
+2024-01-17,2586.45,6080,Repairs & Maintenance,Globex Corp,Monthly invoice,JE-00489
+2024-11-19,2667.32,4010,Sales Revenue,Umbrella Co,Vendor payment,JE-00219
+2024-06-02,9600.0,6060,Marketing Expense,Maple Holdings #8761,,JE-00786
+2024-01-09,3366.71,7010,Bank Fees,Vandelay Imports,Vendor payment,JE-00036
+2024-11-01,1317.42,5010,Cost of Goods Sold,Hooli Inc,Maintenance work,JE-00297
+2024-07-09,1310.94,5010,Cost of Goods Sold,Soylent Foods,Equipment rental,JE-00089
+2024-01-10,3945.22,6080,Repairs & Maintenance,Umbrella Co,Reimbursement,JE-00066
+2024-01-05,4802.02,6040,Rent Expense,Soylent Foods,Reimbursement,JE-00323
+2024-05-01,5602.18,6050,Utilities Expense,Umbrella Co,Service charge,JE-00199
+2024-07-23,3277.73,6020,Software Subscriptions,Globex Corp,Contract milestone,JE-00306
+2024-12-30,1678.07,4020,Service Revenue,Soylent Foods,Vendor payment,JE-00361
+2024-03-05,6778.88,6050,Utilities Expense,Beacon LLC #6615,Subscription renewal,JE-00677
+2024-08-28,5711.19,6050,Utilities Expense,Cyberdyne Systems,Supplies purchase,JE-00602
+2024-06-27,2487.16,6020,Software Subscriptions,Hooli Inc,Monthly invoice,JE-00038
+2024-06-19,2434.42,4010,Sales Revenue,Tyrell Corp,Monthly invoice,JE-00116
+2024-02-22,7068.6,6030,Insurance Expense,Vandelay Imports,Monthly invoice,JE-00098
+2024-09-24,1117.7,6060,Marketing Expense,Acme Supplies,Reimbursement,JE-00338
+2024-01-26,782.77,6090,Office Supplies,Umbrella Co,Reimbursement,JE-00595
+2024-09-30,4329.79,7010,Bank Fees,Acme Supplies,Reimbursement,JE-00413
+2024-06-28,2729.96,7010,Bank Fees,Vandelay Imports,Equipment rental,JE-00556
+2024-09-12,5326.93,6050,Utilities Expense,Globex Corp,Contract milestone,JE-00401
+2024-12-24,5900.85,6070,Travel & Entertainment,Massive Dynamic,Contract milestone,JE-00031
+2024-09-27,1688.75,4020,Service Revenue,Stark Industries,Equipment rental,JE-00151
+2024-07-26,3054.08,6010,Professional Fees,Stark Industries,Reimbursement,JE-00559
+2024-06-19,4301.09,6010,Professional Fees,Soylent Foods,Vendor payment,JE-00179
+2024-05-30,2419.38,4020,Service Revenue,Wayne Enterprises,Subscription renewal,JE-00312
+2024-03-19,1668.81,4020,Service Revenue,Stark Industries,Supplies purchase,JE-00607
+2024-05-31,4013.72,6010,Professional Fees,Wayne Enterprises,Consulting fee,JE-00477
+2024-07-08,8515.42,6030,Insurance Expense,Soylent Foods,Contract milestone,JE-00457
+2024-03-27,681.01,5010,Cost of Goods Sold,Cyberdyne Systems,Reimbursement,JE-00363
+2024-05-20,1900.0,7010,Bank Fees,Initech LLC,Maintenance work,JE-00688
+2024-08-12,6793.63,6040,Rent Expense,Acme Supplies,Vendor payment,JE-00320
+2024-05-15,4305.19,6030,Insurance Expense,Tyrell Corp,Service charge,JE-00653
+2024-03-27,1084.32,6060,Marketing Expense,Globex Corp,Contract milestone,JE-00571
+2024-09-05,4245.29,6030,Insurance Expense,Massive Dynamic,Subscription renewal,JE-00408
+2024-10-31,1679.26,4020,Service Revenue,Soylent Foods,Maintenance work,JE-00370
+2024-08-19,3848.66,6010,Professional Fees,Umbrella Co,Reimbursement,JE-00178
+2024-10-31,1243.43,6090,Office Supplies,Acme Supplies,Reimbursement,JE-00288
+2024-06-10,2028.53,6020,Software Subscriptions,Cyberdyne Systems,Maintenance work,JE-00198
+2024-02-22,300.0,6090,Office Supplies,Massive Dynamic,Monthly invoice,JE-00712
+2024-10-11,1118.6,6060,Marketing Expense,Initech LLC,Supplies purchase,JE-00329
+2024-10-14,4828.87,6010,Professional Fees,Umbrella Co,Subscription renewal,JE-00569
+2024-06-12,3819.81,6020,Software Subscriptions,Stark Industries,Service charge,JE-00592
+2024-10-03,4199.57,7010,Bank Fees,Stark Industries,Service charge,JE-00552
+2024-04-25,3223.0,6040,Rent Expense,Hooli Inc,Maintenance work,JE-00512
+2024-12-26,4800.0,6080,Repairs & Maintenance,Pinecone Partners #7618,,JE-00767
+2024-05-27,4266.57,6040,Rent Expense,Vandelay Imports,Service charge,JE-00416
+2024-10-24,5012.03,6030,Insurance Expense,Stark Industries,Reimbursement,JE-00551
+2024-07-16,4777.93,6030,Insurance Expense,Cyberdyne Systems,Service charge,JE-00604
+2024-09-05,1218.4,6090,Office Supplies,Cyberdyne Systems,Monthly invoice,JE-00596
+2024-08-12,878.73,5010,Cost of Goods Sold,Stark Industries,Supplies purchase,JE-00044
+2024-05-01,6015.46,6030,Insurance Expense,Initech LLC,Consulting fee,JE-00043
+2024-10-02,1078.57,6060,Marketing Expense,Tyrell Corp,Subscription renewal,JE-00622
+2024-06-21,927.07,6090,Office Supplies,Cyberdyne Systems,Consulting fee,JE-00419
+2024-08-05,1406.6,5010,Cost of Goods Sold,Acme Supplies,Vendor payment,JE-00264
+2024-02-29,3905.18,6040,Rent Expense,Acme Supplies,Reimbursement,JE-00430
+2024-02-12,3042.75,6010,Professional Fees,Tyrell Corp,Consulting fee,JE-00189
+2024-05-20,877.25,6060,Marketing Expense,Initech LLC,Contract milestone,JE-00553
+2024-03-08,4756.61,6040,Rent Expense,Globex Corp,Maintenance work,JE-00523
+2024-01-22,6897.06,6040,Rent Expense,Soylent Foods,Maintenance work,JE-00254
+2024-08-22,972.84,5010,Cost of Goods Sold,Acme Supplies,Consulting fee,JE-00272
+2024-09-05,2347.61,4020,Service Revenue,Cedar & Co #2020,Maintenance work,JE-00660
+2024-09-26,3560.78,6020,Software Subscriptions,Cyberdyne Systems,Equipment rental,JE-00174
+2024-11-21,782.54,6060,Marketing Expense,Stark Industries,Equipment rental,JE-00373
+2024-04-15,3569.1,6070,Travel & Entertainment,Vandelay Imports,Supplies purchase,JE-00124
+2024-10-09,1293.22,5010,Cost of Goods Sold,Soylent Foods,Monthly invoice,JE-00549
+2024-11-17,4800.0,6050,Utilities Expense,Echo Services #8038,,JE-00736
+2024-02-11,24000.0,6090,Office Supplies,Vista Trading Co #6942,,JE-00790
+2024-03-14,2834.21,6020,Software Subscriptions,Tyrell Corp,Maintenance work,JE-00035
+2024-10-30,4898.92,6040,Rent Expense,Vandelay Imports,Vendor payment,JE-00270
+2024-02-17,9600.0,6040,Rent Expense,Pinecone Partners #6864,,JE-00772
+2024-03-19,3776.1,6020,Software Subscriptions,Stark Industries,Reimbursement,JE-00112
+2024-12-18,3567.57,6030,Insurance Expense,Initech LLC,Service charge,JE-00182
+2024-11-04,2884.79,7010,Bank Fees,Cyberdyne Systems,Subscription renewal,JE-00435
+2024-10-13,9600.0,5010,Cost of Goods Sold,Redrock LLC #7840,,JE-00778
+2024-12-06,3022.5,7010,Bank Fees,Cyberdyne Systems,Service charge,JE-00427
+2024-12-23,757.76,6060,Marketing Expense,Wayne Enterprises,Monthly invoice,JE-00418
+2024-03-13,2590.4,7010,Bank Fees,Soylent Foods,Supplies purchase,JE-00231
+2024-01-03,810.17,6090,Office Supplies,Vandelay Imports,Maintenance work,JE-00141
+2024-12-17,3485.27,6080,Repairs & Maintenance,Stark Industries,Vendor payment,JE-00173
+2024-02-25,4800.0,7010,Bank Fees,Echo Services #6201,,JE-00783
+2024-07-08,4884.25,6030,Insurance Expense,Tyrell Corp,Vendor payment,JE-00407
+2024-01-30,761.83,6060,Marketing Expense,Initech LLC,Subscription renewal,JE-00048
+2024-06-06,2353.79,6080,Repairs & Maintenance,Cyberdyne Systems,Equipment rental,JE-00362
+2024-07-26,7000.79,6040,Rent Expense,Tyrell Corp,Equipment rental,JE-00600
+2024-04-18,1156.93,5010,Cost of Goods Sold,Soylent Foods,Consulting fee,JE-00225
+2024-07-04,2758.94,4010,Sales Revenue,Globex Corp,Monthly invoice,JE-00333
+2024-10-11,6381.95,6030,Insurance Expense,Cyberdyne Systems,Maintenance work,JE-00508
+2024-04-02,1920.06,4020,Service Revenue,Umbrella Co,Subscription renewal,JE-00194
+2024-05-07,7954.52,6030,Insurance Expense,Globex Corp,Maintenance work,JE-00277
+2024-10-07,4579.43,6010,Professional Fees,Vandelay Imports,Maintenance work,JE-00069
+2024-06-13,1461.75,4020,Service Revenue,Globex Corp,Vendor payment,JE-00332
+2024-05-05,9600.0,6050,Utilities Expense,Vista Trading Co #7343,,JE-00745
+2024-01-02,13814.41,7010,Bank Fees,Hooli Inc,Subscription renewal,JE-00671
+2024-04-14,24000.0,6090,Office Supplies,Vista Trading Co #1136,,JE-00799
+2024-05-27,1020.39,6060,Marketing Expense,Tyrell Corp,Subscription renewal,JE-00460
+2024-01-16,2425.79,6080,Repairs & Maintenance,Tyrell Corp,Supplies purchase,JE-00455
+2024-05-22,3449.91,6050,Utilities Expense,Stark Industries,Monthly invoice,JE-00003
+2024-05-15,1430.08,4020,Service Revenue,Umbrella Co,Monthly invoice,JE-00557
+2024-09-05,4104.45,6070,Travel & Entertainment,Tyrell Corp,Reimbursement,JE-00101
+2024-11-25,2460.75,7010,Bank Fees,Wayne Enterprises,Equipment rental,JE-00212
+2024-10-15,4548.73,6010,Professional Fees,Stark Industries,Maintenance work,JE-00616
+2024-11-13,1717.35,6020,Software Subscriptions,Vandelay Imports,Subscription renewal,JE-00165
+2024-04-23,2927.37,6020,Software Subscriptions,Tyrell Corp,Monthly invoice,JE-00200
+2024-03-30,5744.81,6070,Travel & Entertainment,Vandelay Imports,Consulting fee,JE-00669
+2024-11-11,1567.05,4020,Service Revenue,Soylent Foods,Vendor payment,JE-00139
+2024-12-29,4800.0,6010,Professional Fees,Apex Traders #6921,,JE-00740
+2024-03-21,2225.94,7010,Bank Fees,Globex Corp,Consulting fee,JE-00047
+2024-05-02,2148.51,4010,Sales Revenue,Initech LLC,Consulting fee,JE-00501
+2024-12-31,9600.0,6010,Professional Fees,Vista Trading Co #5248,,JE-00722
+2024-11-28,3586.11,6030,Insurance Expense,Initech LLC,Maintenance work,JE-00245
+2024-06-11,7844.6,6050,Utilities Expense,Massive Dynamic,Reimbursement,JE-00593
+2024-03-08,4572.46,6040,Rent Expense,Stark Industries,Maintenance work,JE-00222
+2024-08-28,596.12,5010,Cost of Goods Sold,Initech LLC,Service charge,JE-00164
+2024-03-20,1118.19,6090,Office Supplies,Stark Industries,Vendor payment,JE-00197
+2024-06-13,3700.0,4020,Service Revenue,Tyrell Corp,Equipment rental,JE-00684
+2024-11-28,1330.61,6090,Office Supplies,Stark Industries,Subscription renewal,JE-00521
+2024-09-24,5079.23,6080,Repairs & Maintenance,Umbrella Co,Equipment rental,JE-00040
+2024-08-13,3604.51,6020,Software Subscriptions,Cyberdyne Systems,Vendor payment,JE-00385
+2024-12-27,9600.0,6050,Utilities Expense,Vista Trading Co #2206,,JE-00749
+2024-04-08,8345.36,6030,Insurance Expense,Initech LLC,Service charge,JE-00018
+2024-09-09,1800.91,4010,Sales Revenue,Umbrella Co,Vendor payment,JE-00138
+2024-01-18,3865.29,6010,Professional Fees,Acme Supplies,Monthly invoice,JE-00126
+2024-01-11,8583.89,6040,Rent Expense,Tyrell Corp,Vendor payment,JE-00587
+2024-05-10,2411.04,6070,Travel & Entertainment,Vandelay Imports,Contract milestone,JE-00440
+2024-01-25,5220.71,6010,Professional Fees,Umbrella Co,Contract milestone,JE-00284
+2024-09-27,1027.83,5010,Cost of Goods Sold,Acme Supplies,Monthly invoice,JE-00487
+2024-02-22,5342.11,6010,Professional Fees,Globex Corp,Reimbursement,JE-00025
+2024-11-29,6264.4,6010,Professional Fees,Stark Industries,Consulting fee,JE-00004
+2024-07-12,2946.05,6020,Software Subscriptions,Globex Corp,Reimbursement,JE-00392
+2024-12-16,6401.63,6040,Rent Expense,Globex Corp,Reimbursement,JE-00633
+2024-11-06,1896.37,4020,Service Revenue,Massive Dynamic,Contract milestone,JE-00096
+2024-11-21,3586.55,6080,Repairs & Maintenance,Acme Supplies,Service charge,JE-00187
+2024-05-01,4525.83,6010,Professional Fees,Tyrell Corp,Contract milestone,JE-00535
+2024-12-22,24000.0,6030,Insurance Expense,Redrock LLC #8544,,JE-00777
+2024-09-20,1058.78,6090,Office Supplies,Globex Corp,Contract milestone,JE-00321
+2024-10-09,4364.93,6040,Rent Expense,Initech LLC,Subscription renewal,JE-00625
+2024-11-27,3487.96,7010,Bank Fees,Wayne Enterprises,Consulting fee,JE-00074
+2024-08-02,3102.96,6070,Travel & Entertainment,Globex Corp,Maintenance work,JE-00438
+2024-12-30,1627.49,4020,Service Revenue,Massive Dynamic,Service charge,JE-00504
+2024-07-27,24000.0,6070,Travel & Entertainment,Maple Holdings #3358,,JE-00717
+2024-05-20,2573.95,6020,Software Subscriptions,Soylent Foods,Service charge,JE-00123
+2024-02-02,4752.35,6040,Rent Expense,Massive Dynamic,Maintenance work,JE-00077
+2024-05-21,969.92,6060,Marketing Expense,Umbrella Co,Maintenance work,JE-00309
+2024-11-07,5966.84,6030,Insurance Expense,Stark Industries,Equipment rental,JE-00371
+2024-09-03,3969.96,6040,Rent Expense,Wayne Enterprises,Reimbursement,JE-00005
+2024-06-26,3057.83,4010,Sales Revenue,Stark Industries,Vendor payment,JE-00337
+2024-03-19,3628.37,7010,Bank Fees,Umbrella Co,Monthly invoice,JE-00395
+2024-01-02,4317.38,6010,Professional Fees,Vandelay Imports,Monthly invoice,JE-00352
+2024-11-02,3291.0,7010,Bank Fees,Initech LLC,Consulting fee,JE-00680
+2024-10-01,3213.57,6080,Repairs & Maintenance,Tyrell Corp,Service charge,JE-00495
+2024-02-05,3500.0,5010,Cost of Goods Sold,Stark Industries,Consulting fee,JE-00661
+2024-07-05,6656.89,6030,Insurance Expense,Vandelay Imports,Supplies purchase,JE-00609
+2024-05-02,3188.09,4010,Sales Revenue,Tyrell Corp,Reimbursement,JE-00117
+2024-01-31,3769.08,7010,Bank Fees,Initech LLC,Reimbursement,JE-00500
+2024-08-12,2378.77,4010,Sales Revenue,Umbrella Co,Contract milestone,JE-00313
+2024-09-22,9600.0,6060,Marketing Expense,Cedar & Co #5105,,JE-00724
+2024-08-30,1076.17,4020,Service Revenue,Globex Corp,Contract milestone,JE-00612
+2024-11-29,830.75,6090,Office Supplies,Globex Corp,Equipment rental,JE-00262
+2024-04-04,9222.12,4020,Service Revenue,Massive Dynamic,Maintenance work,JE-00676
+2024-05-02,1453.45,5010,Cost of Goods Sold,Stark Industries,Contract milestone,JE-00335
+2024-05-22,3032.25,6010,Professional Fees,Acme Supplies,Reimbursement,JE-00611
+2024-12-28,4800.0,6030,Insurance Expense,Brightway Group #9435,,JE-00764
+2024-09-26,6406.98,6050,Utilities Expense,Initech LLC,Service charge,JE-00526
+2024-06-24,5657.37,6030,Insurance Expense,Vandelay Imports,Service charge,JE-00648
+2024-12-22,24000.0,6050,Utilities Expense,Cedar & Co #8035,,JE-00755
+2024-08-30,500.0,6050,Utilities Expense,Acme Supplies,Vendor payment,JE-00683
+2024-12-07,24000.0,6020,Software Subscriptions,Apex Traders #2043,,JE-00766
+2024-04-18,2791.91,4010,Sales Revenue,Cyberdyne Systems,Contract milestone,JE-00260
+2024-01-12,4886.43,6040,Rent Expense,Vandelay Imports,Consulting fee,JE-00579
+2024-12-16,4917.31,6050,Utilities Expense,Acme Supplies,Reimbursement,JE-00538
+2024-12-26,1249.39,6060,Marketing Expense,Stark Industries,Monthly invoice,JE-00638
+2024-05-23,5910.17,6050,Utilities Expense,Massive Dynamic,Subscription renewal,JE-00565
+2024-05-08,5054.23,6070,Travel & Entertainment,Wayne Enterprises,Reimbursement,JE-00590
+2024-01-19,2644.05,4010,Sales Revenue,Cyberdyne Systems,Supplies purchase,JE-00169
+2024-08-12,2424.48,4010,Sales Revenue,Vandelay Imports,Reimbursement,JE-00265
+2024-01-21,24000.0,6070,Travel & Entertainment,Quantum Ventures #4461,,JE-00759
+2024-06-19,2358.3,7010,Bank Fees,Vandelay Imports,Service charge,JE-00140
+2024-11-13,5346.26,6010,Professional Fees,Wayne Enterprises,Subscription renewal,JE-00603
+2024-12-28,24000.0,6030,Insurance Expense,Northwind Co #5437,,JE-00773
+2024-06-02,9600.0,5010,Cost of Goods Sold,Echo Services #3563,,JE-00793
+2024-08-04,4800.0,7010,Bank Fees,Beacon LLC #4960,,JE-00775
+2024-03-20,3566.25,6070,Travel & Entertainment,Wayne Enterprises,Subscription renewal,JE-00515
+2024-08-13,1148.01,4020,Service Revenue,Massive Dynamic,Contract milestone,JE-00269
+2024-07-09,6977.08,6050,Utilities Expense,Vandelay Imports,Equipment rental,JE-00376
+2024-12-06,6662.72,6040,Rent Expense,Vandelay Imports,Contract milestone,JE-00263
+2024-09-26,1924.08,6020,Software Subscriptions,Acme Supplies,Contract milestone,JE-00582
+2024-04-15,3931.54,7010,Bank Fees,Wayne Enterprises,Contract milestone,JE-00364
+2024-04-11,1378.66,6090,Office Supplies,Acme Supplies,Vendor payment,JE-00348
+2024-01-05,1341.12,5010,Cost of Goods Sold,Vandelay Imports,Vendor payment,JE-00330
+2024-09-12,3590.72,6020,Software Subscriptions,Stark Industries,Contract milestone,JE-00012
+2024-10-04,757.59,6090,Office Supplies,Globex Corp,Consulting fee,JE-00203
+2024-12-25,9600.0,6040,Rent Expense,Echo Services #2483,,JE-00725
+2024-03-01,5034.55,6040,Rent Expense,Globex Corp,Contract milestone,JE-00546
+2024-11-14,1961.75,4020,Service Revenue,Wayne Enterprises,Reimbursement,JE-00543
+2024-05-21,2224.13,4010,Sales Revenue,Acme Supplies,Vendor payment,JE-00283
+2024-04-08,1178.87,6090,Office Supplies,Stark Industries,Service charge,JE-00252
+2024-07-04,2645.03,4010,Sales Revenue,Soylent Foods,Contract milestone,JE-00497
+2024-11-08,4494.68,6050,Utilities Expense,Cyberdyne Systems,Equipment rental,JE-00294
+2024-04-12,38124.09,6030,Insurance Expense,Hooli Inc,Subscription renewal,JE-00700
+2024-03-30,4800.0,6080,Repairs & Maintenance,Echo Services #7688,,JE-00780
+2024-02-01,6286.3,6030,Insurance Expense,Hooli Inc,Equipment rental,JE-00190
+2024-02-05,3116.63,6020,Software Subscriptions,Wayne Enterprises,Consulting fee,JE-00213
+2024-10-17,2591.1,4010,Sales Revenue,Hooli Inc,Monthly invoice,JE-00229
+2024-01-12,3794.52,6070,Travel & Entertainment,Tyrell Corp,Supplies purchase,JE-00453
+2024-02-21,3530.18,6080,Repairs & Maintenance,Globex Corp,Service charge,JE-00241
+2024-11-21,2477.57,6020,Software Subscriptions,Massive Dynamic,Vendor payment,JE-00539
+2024-08-30,2784.61,6040,Rent Expense,Tyrell Corp,Monthly invoice,JE-00608
+2024-12-17,3173.58,6010,Professional Fees,Vandelay Imports,Contract milestone,JE-00059
+2024-01-16,2840.24,6020,Software Subscriptions,Vandelay Imports,Supplies purchase,JE-00390
+2024-08-09,747.85,5010,Cost of Goods Sold,Stark Industries,Subscription renewal,JE-00014
+2024-02-07,6730.77,6030,Insurance Expense,Globex Corp,Service charge,JE-00389
+2024-01-01,2649.8,6070,Travel & Entertainment,Initech LLC,Consulting fee,JE-00275
+2024-08-25,4800.0,6010,Professional Fees,Quantum Ventures #1117,,JE-00750
+2024-10-21,2931.52,6070,Travel & Entertainment,Umbrella Co,Contract milestone,JE-00507
+2024-11-06,4249.32,6070,Travel & Entertainment,Stark Industries,Service charge,JE-00517
+2024-07-26,4619.41,6050,Utilities Expense,Vandelay Imports,Reimbursement,JE-00462
+2024-01-02,1293.96,6060,Marketing Expense,Globex Corp,Vendor payment,JE-00509
+2024-03-25,926.42,6090,Office Supplies,Globex Corp,Vendor payment,JE-00046
+2024-12-13,3227.97,4010,Sales Revenue,Initech LLC,Monthly invoice,JE-00554
+2024-10-16,2335.42,4010,Sales Revenue,Massive Dynamic,Supplies purchase,JE-00072
+2024-05-02,5393.46,6040,Rent Expense,Stark Industries,Equipment rental,JE-00411
+2024-10-29,982.99,6060,Marketing Expense,Stark Industries,Subscription renewal,JE-00469
+2024-12-26,9600.0,6090,Office Supplies,Apex Traders #1325,,JE-00791
+2024-07-12,832.76,6090,Office Supplies,Hooli Inc,Reimbursement,JE-00415
+2024-06-19,7558.89,6030,Insurance Expense,Umbrella Co,Subscription renewal,JE-00541
+2024-08-14,5697.32,6030,Insurance Expense,Umbrella Co,Maintenance work,JE-00420
+2024-12-26,9600.0,6010,Professional Fees,Northwind Co #5628,,JE-00713
+2024-05-24,18781.88,7010,Bank Fees,Cyberdyne Systems,Subscription renewal,JE-00687
+2024-07-17,30968.71,6080,Repairs & Maintenance,Stark Industries,Subscription renewal,JE-00663
+2024-02-28,5066.85,6070,Travel & Entertainment,Initech LLC,Equipment rental,JE-00030
+2024-05-06,2673.44,4010,Sales Revenue,Massive Dynamic,Service charge,JE-00093
+2024-11-11,3600.84,6030,Insurance Expense,Vandelay Imports,Maintenance work,JE-00488
+2024-06-21,1423.47,4010,Sales Revenue,Hooli Inc,Subscription renewal,JE-00356
+2024-02-05,2522.03,4010,Sales Revenue,Acme Supplies,Service charge,JE-00555
+2024-12-26,4800.0,6020,Software Subscriptions,Redrock LLC #7203,,JE-00797
+2024-02-01,1004.95,5010,Cost of Goods Sold,Tyrell Corp,Supplies purchase,JE-00424
+2024-12-10,2849.84,6070,Travel & Entertainment,Umbrella Co,Vendor payment,JE-00192
+2024-07-15,511.55,6060,Marketing Expense,Wayne Enterprises,Reimbursement,JE-00091
+2024-09-04,4362.39,6020,Software Subscriptions,Hooli Inc,Reimbursement,JE-00067
+2024-04-08,1050.03,4020,Service Revenue,Globex Corp,Monthly invoice,JE-00326
+2024-11-06,5797.65,6030,Insurance Expense,Vandelay Imports,Maintenance work,JE-00220
+2024-09-04,3288.23,7010,Bank Fees,Initech LLC,Maintenance work,JE-00247
+2024-03-19,1223.43,5010,Cost of Goods Sold,Wayne Enterprises,Equipment rental,JE-00217
+2024-05-02,4301.77,6040,Rent Expense,Cyberdyne Systems,Contract milestone,JE-00024
+2024-12-22,9600.0,6010,Professional Fees,Brightway Group #5608,,JE-00721
+2024-12-30,3100.0,4020,Service Revenue,Tyrell Corp,Contract milestone,JE-00710
+2024-07-04,1067.59,6020,Software Subscriptions,Umbrella Co,Equipment rental,JE-00234
+2024-04-17,3858.47,7010,Bank Fees,Acme Supplies,Supplies purchase,JE-00397
+2024-05-11,9600.0,5010,Cost of Goods Sold,Vista Trading Co #1551,,JE-00757
+2024-12-26,1250.47,6060,Marketing Expense,Umbrella Co,Vendor payment,JE-00150
+2024-01-28,4800.0,6010,Professional Fees,Quantum Ventures #2772,,JE-00739
+2024-09-28,9600.0,6050,Utilities Expense,Pinecone Partners #9127,,JE-00763
+2024-04-08,4875.78,6050,Utilities Expense,Tyrell Corp,Supplies purchase,JE-00163
+2024-12-24,4492.61,6080,Repairs & Maintenance,Stark Industries,Monthly invoice,JE-00161
+2024-12-30,4800.0,6070,Travel & Entertainment,Redrock LLC #2143,,JE-00788
+2024-08-05,3249.12,6020,Software Subscriptions,Globex Corp,Reimbursement,JE-00566
+2024-01-09,1057.14,6060,Marketing Expense,Tyrell Corp,Vendor payment,JE-00153
+2024-10-25,2502.37,6030,Insurance Expense,Vandelay Imports,Consulting fee,JE-00441
+2024-01-02,8391.97,6030,Insurance Expense,Vandelay Imports,Equipment rental,JE-00623
+2024-04-11,1379.39,5010,Cost of Goods Sold,Initech LLC,Service charge,JE-00127
+2024-11-07,3674.25,6020,Software Subscriptions,Stark Industries,Supplies purchase,JE-00027
+2024-02-19,4051.57,6010,Professional Fees,Soylent Foods,Subscription renewal,JE-00645
+2024-07-05,3076.89,6070,Travel & Entertainment,Hooli Inc,Contract milestone,JE-00516
+2024-12-06,1494.85,5010,Cost of Goods Sold,Vandelay Imports,Consulting fee,JE-00484
+2024-07-28,9600.0,5010,Cost of Goods Sold,Cedar & Co #3662,,JE-00774
+2024-02-26,3333.65,7010,Bank Fees,Acme Supplies,Equipment rental,JE-00095
+2024-08-04,1201.11,5010,Cost of Goods Sold,Initech LLC,Equipment rental,JE-00667
+2024-04-30,1071.63,6060,Marketing Expense,Initech LLC,Monthly invoice,JE-00426
+2024-05-03,1970.16,4020,Service Revenue,Globex Corp,Consulting fee,JE-00375
+2024-09-16,4204.92,6010,Professional Fees,Vandelay Imports,Vendor payment,JE-00267
+2024-04-09,985.67,6090,Office Supplies,Vandelay Imports,Service charge,JE-00144
+2024-10-25,5138.52,6040,Rent Expense,Cyberdyne Systems,Contract milestone,JE-00450
+2024-08-10,2938.32,6080,Repairs & Maintenance,Hooli Inc,Reimbursement,JE-00702
+2024-07-30,2216.33,4020,Service Revenue,Massive Dynamic,Service charge,JE-00108
+2024-12-11,718.78,6060,Marketing Expense,Wayne Enterprises,Maintenance work,JE-00122
+2024-12-13,3150.08,7010,Bank Fees,Globex Corp,Contract milestone,JE-00410
+2024-01-12,1145.53,5010,Cost of Goods Sold,Wayne Enterprises,Vendor payment,JE-00193
+2024-07-27,3795.56,6020,Software Subscriptions,Cyberdyne Systems,Maintenance work,JE-00696
+2024-03-19,3466.68,6080,Repairs & Maintenance,Cyberdyne Systems,Subscription renewal,JE-00630
+2024-03-26,3125.71,6020,Software Subscriptions,Cyberdyne Systems,Vendor payment,JE-00087
+2024-02-27,5228.17,6010,Professional Fees,Massive Dynamic,Consulting fee,JE-00086
+2024-05-27,2967.14,7010,Bank Fees,Umbrella Co,Consulting fee,JE-00058
+2024-12-11,5622.27,6040,Rent Expense,Globex Corp,Supplies purchase,JE-00564
+2024-08-06,3350.24,7010,Bank Fees,Stark Industries,Consulting fee,JE-00344
+2024-07-12,994.04,6060,Marketing Expense,Massive Dynamic,Service charge,JE-00431
+2024-02-20,2292.88,6070,Travel & Entertainment,Vista Trading Co #8028,Monthly invoice,JE-00701
+2024-08-16,593.66,4010,Sales Revenue,Initech LLC,Monthly invoice,JE-00107
+2024-02-09,5992.94,6050,Utilities Expense,Stark Industries,Consulting fee,JE-00244
+2024-06-23,3278.98,7010,Bank Fees,Initech LLC,Supplies purchase,JE-00695
+2024-12-30,8244.79,6040,Rent Expense,Cyberdyne Systems,Vendor payment,JE-00478
+2024-07-18,2043.18,7010,Bank Fees,Wayne Enterprises,Contract milestone,JE-00246
+2024-06-10,3847.8,4010,Sales Revenue,Hooli Inc,Consulting fee,JE-00644
+2024-05-16,2118.6,6010,Professional Fees,Vandelay Imports,Service charge,JE-00113
+2024-11-11,3162.82,4010,Sales Revenue,Acme Supplies,Equipment rental,JE-00449
+2024-08-14,2534.51,6080,Repairs & Maintenance,Acme Supplies,Service charge,JE-00347
+2024-01-17,1320.93,4020,Service Revenue,Globex Corp,Supplies purchase,JE-00181
+2024-02-07,3308.91,6080,Repairs & Maintenance,Cyberdyne Systems,Reimbursement,JE-00055
+2024-01-02,3344.17,4010,Sales Revenue,Soylent Foods,Service charge,JE-00143
+2024-07-08,1058.31,5010,Cost of Goods Sold,Umbrella Co,Vendor payment,JE-00136
+2024-05-10,5228.57,6040,Rent Expense,Initech LLC,Subscription renewal,JE-00223
+2024-01-24,4343.76,6010,Professional Fees,Massive Dynamic,Reimbursement,JE-00318
+2024-09-17,3646.4,6050,Utilities Expense,Massive Dynamic,Subscription renewal,JE-00034
+2024-07-22,358.53,6090,Office Supplies,Cyberdyne Systems,Consulting fee,JE-00170
+2024-12-26,24000.0,6030,Insurance Expense,Summit Holdings #3277,,JE-00737
+2024-12-26,5406.56,6040,Rent Expense,Globex Corp,Subscription renewal,JE-00641
+2024-06-29,4800.0,5010,Cost of Goods Sold,Pinecone Partners #8712,,JE-00792
+2024-06-05,4328.63,7010,Bank Fees,Hooli Inc,Reimbursement,JE-00307
+2024-12-24,9600.0,6060,Marketing Expense,Redrock LLC #9707,,JE-00770
+2024-06-25,2997.34,6020,Software Subscriptions,Massive Dynamic,Contract milestone,JE-00439
+2024-08-27,2339.87,4020,Service Revenue,Tyrell Corp,Vendor payment,JE-00080
+2024-08-16,2951.33,6020,Software Subscriptions,Umbrella Co,Monthly invoice,JE-00099
+2024-01-17,726.62,6090,Office Supplies,Vandelay Imports,Equipment rental,JE-00115
+2024-10-24,3467.35,6020,Software Subscriptions,Massive Dynamic,Service charge,JE-00632
+2024-09-13,1900.0,6020,Software Subscriptions,Vandelay Imports,Consulting fee,JE-00665
+2024-12-26,9600.0,6070,Travel & Entertainment,Beacon LLC #5464,,JE-00758
+2024-06-19,1055.68,6060,Marketing Expense,Acme Supplies,Monthly invoice,JE-00545
+2024-10-30,1358.5,6060,Marketing Expense,Wayne Enterprises,Contract milestone,JE-00465
+2024-10-04,1836.29,6020,Software Subscriptions,Hooli Inc,Monthly invoice,JE-00196
+2024-03-19,993.72,6060,Marketing Expense,Massive Dynamic,Equipment rental,JE-00261
+2024-06-29,24000.0,5010,Cost of Goods Sold,Northwind Co #3866,,JE-00718
+2024-09-23,8816.62,6030,Insurance Expense,Hooli Inc,Monthly invoice,JE-00105
+2024-09-20,3548.44,6080,Repairs & Maintenance,Massive Dynamic,Equipment rental,JE-00474
+2024-04-18,5325.74,6010,Professional Fees,Initech LLC,Reimbursement,JE-00238
+2024-01-18,4821.16,6050,Utilities Expense,Massive Dynamic,Vendor payment,JE-00033
+2024-02-21,1333.21,6060,Marketing Expense,Globex Corp,Monthly invoice,JE-00452
+2024-04-15,2826.89,6080,Repairs & Maintenance,Initech LLC,Contract milestone,JE-00083
+2024-12-06,2755.02,4010,Sales Revenue,Stark Industries,Supplies purchase,JE-00049
+2024-01-18,3059.44,7010,Bank Fees,Globex Corp,Supplies purchase,JE-00125
+2024-01-26,5893.65,6080,Repairs & Maintenance,Stark Industries,Vendor payment,JE-00528
+2024-02-07,6275.39,6030,Insurance Expense,Tyrell Corp,Contract milestone,JE-00654
+2024-08-20,3639.24,6080,Repairs & Maintenance,Acme Supplies,Contract milestone,JE-00372
+2024-05-01,1185.09,6060,Marketing Expense,Hooli Inc,Consulting fee,JE-00298
+2024-12-19,971.27,7010,Bank Fees,Stark Industries,Consulting fee,JE-00421
+2024-03-05,2866.33,7010,Bank Fees,Hooli Inc,Vendor payment,JE-00202
+2024-04-02,9383.76,4020,Service Revenue,Stark Industries,Consulting fee,JE-00658
+2024-10-16,4781.26,6070,Travel & Entertainment,Globex Corp,Monthly invoice,JE-00148
+2024-06-28,2985.95,6040,Rent Expense,Globex Corp,Contract milestone,JE-00013
+2024-09-15,24000.0,6060,Marketing Expense,Brightway Group #4200,,JE-00732
+2024-12-23,24000.0,6040,Rent Expense,Maple Holdings #1321,,JE-00752
+2024-07-25,2746.15,6050,Utilities Expense,Initech LLC,Service charge,JE-00639
+2024-02-20,773.68,6090,Office Supplies,Tyrell Corp,Service charge,JE-00433
+2024-11-20,2355.87,4020,Service Revenue,Umbrella Co,Equipment rental,JE-00475
+2024-11-27,1852.44,4020,Service Revenue,Vandelay Imports,Equipment rental,JE-00184
+2024-03-20,760.39,6090,Office Supplies,Globex Corp,Maintenance work,JE-00417
+2024-10-24,1446.82,6090,Office Supplies,Wayne Enterprises,,JE-00693
+2024-12-26,3712.66,7010,Bank Fees,Umbrella Co,Monthly invoice,JE-00614
+2024-04-28,4800.0,6030,Insurance Expense,Vista Trading Co #2056,,JE-00771
+2024-02-28,3769.67,6080,Repairs & Maintenance,Vandelay Imports,Supplies purchase,JE-00594
+2024-10-22,2960.92,4010,Sales Revenue,Umbrella Co,Vendor payment,JE-00374
+2024-04-29,2945.21,6020,Software Subscriptions,Soylent Foods,Consulting fee,JE-00640
+2024-04-22,2073.16,4010,Sales Revenue,Cyberdyne Systems,Equipment rental,JE-00016
+2024-03-26,2793.24,4010,Sales Revenue,Globex Corp,Supplies purchase,JE-00304
+2024-05-13,6570.24,6040,Rent Expense,Stark Industries,Consulting fee,JE-00520
+2024-02-22,2821.58,6080,Repairs & Maintenance,Wayne Enterprises,Subscription renewal,JE-00293
+2024-07-22,3154.04,4010,Sales Revenue,Soylent Foods,Supplies purchase,JE-00381
+2024-08-29,8042.73,6030,Insurance Expense,Acme Supplies,Service charge,JE-00232
+2024-11-06,4355.44,7010,Bank Fees,Cyberdyne Systems,Equipment rental,JE-00325
+2024-03-11,2893.85,6020,Software Subscriptions,Globex Corp,Reimbursement,JE-00114
+2024-03-05,5031.4,6010,Professional Fees,Initech LLC,Vendor payment,JE-00085
+2024-11-07,3753.77,6040,Rent Expense,Wayne Enterprises,Supplies purchase,JE-00132
+2024-09-26,2692.47,6010,Professional Fees,Cyberdyne Systems,Vendor payment,JE-00490
+2024-12-30,9600.0,7010,Bank Fees,Brightway Group #5917,,JE-00743
+2024-08-26,1032.49,6090,Office Supplies,Vandelay Imports,Maintenance work,JE-00482
+2024-12-22,24000.0,6090,Office Supplies,Pinecone Partners #6886,,JE-00716
+2024-02-12,471.29,6090,Office Supplies,Hooli Inc,Contract milestone,JE-00276
+2024-04-13,4800.0,7010,Bank Fees,Vista Trading Co #4256,,JE-00769
+2024-09-27,1745.55,4020,Service Revenue,Soylent Foods,Reimbursement,JE-00111
+2024-08-19,2514.92,6080,Repairs & Maintenance,Cyberdyne Systems,Service charge,JE-00583
+2024-09-30,1163.94,6060,Marketing Expense,Vandelay Imports,Subscription renewal,JE-00544
+2024-01-04,1676.18,6080,Repairs & Maintenance,Globex Corp,Monthly invoice,JE-00365
+2024-05-31,5125.43,6080,Repairs & Maintenance,Wayne Enterprises,Service charge,JE-00026
+2024-12-02,2744.63,6020,Software Subscriptions,Vandelay Imports,Subscription renewal,JE-00051
+2024-08-07,5175.97,6050,Utilities Expense,Apex Traders #8873,Contract milestone,JE-00682
+2024-05-02,2559.25,6080,Repairs & Maintenance,Tyrell Corp,Maintenance work,JE-00425
+2024-07-11,672.72,6060,Marketing Expense,Vandelay Imports,Vendor payment,JE-00281
+2024-12-13,4420.09,6010,Professional Fees,Soylent Foods,Consulting fee,JE-00065
+2024-03-08,2994.72,4010,Sales Revenue,Globex Corp,Contract milestone,JE-00183
+2024-01-11,2837.71,6020,Software Subscriptions,Soylent Foods,Service charge,JE-00201
+2024-09-09,3594.21,6020,Software Subscriptions,Stark Industries,Vendor payment,JE-00019
+2024-08-06,1138.33,6090,Office Supplies,Globex Corp,Service charge,JE-00647
+2024-08-21,3903.43,6010,Professional Fees,Initech LLC,Reimbursement,JE-00300
+2024-12-09,4535.81,6040,Rent Expense,Wayne Enterprises,Contract milestone,JE-00624
+2024-05-17,3957.05,6040,Rent Expense,Initech LLC,Vendor payment,JE-00052
+2024-09-06,1343.27,5010,Cost of Goods Sold,Massive Dynamic,Subscription renewal,JE-00237
+2024-07-02,4562.59,6050,Utilities Expense,Tyrell Corp,Consulting fee,JE-00028
+2024-02-04,24000.0,6070,Travel & Entertainment,Echo Services #6063,,JE-00714
+2024-08-30,3536.96,6070,Travel & Entertainment,Soylent Foods,Monthly invoice,JE-00584
+2024-02-09,5987.92,6010,Professional Fees,Vandelay Imports,Maintenance work,JE-00443
+2024-11-08,5096.3,6030,Insurance Expense,Hooli Inc,Monthly invoice,JE-00533
+2024-04-03,2105.48,4010,Sales Revenue,Cyberdyne Systems,Supplies purchase,JE-00271
+2024-01-26,2071.59,4010,Sales Revenue,Initech LLC,Reimbursement,JE-00296
+2024-01-17,4992.92,6050,Utilities Expense,Tyrell Corp,Vendor payment,JE-00308
+2024-05-26,3066.85,6020,Software Subscriptions,Vandelay Imports,Reimbursement,JE-00666
+2024-07-19,3348.76,6070,Travel & Entertainment,Acme Supplies,Supplies purchase,JE-00316
+2024-02-08,6243.29,6030,Insurance Expense,Tyrell Corp,Monthly invoice,JE-00498
+2024-06-27,3402.22,6080,Repairs & Maintenance,Soylent Foods,Vendor payment,JE-00468
+2024-12-04,1609.99,4020,Service Revenue,Wayne Enterprises,Subscription renewal,JE-00496
+2024-11-14,3527.38,7010,Bank Fees,Umbrella Co,Vendor payment,JE-00021
+2024-05-02,3144.92,6020,Software Subscriptions,Soylent Foods,Service charge,JE-00218
+2024-07-27,9600.0,6070,Travel & Entertainment,Northwind Co #6375,,JE-00727
+2024-07-24,5075.67,6050,Utilities Expense,Massive Dynamic,Reimbursement,JE-00160
+2024-07-23,1008.04,6090,Office Supplies,Stark Industries,Service charge,JE-00646
+2024-11-30,4800.0,6020,Software Subscriptions,Vista Trading Co #1518,,JE-00789
+2024-09-13,8002.73,6030,Insurance Expense,Tyrell Corp,Service charge,JE-00436
+2024-04-19,5572.7,6050,Utilities Expense,Soylent Foods,Supplies purchase,JE-00406
+2024-07-05,6282.87,6050,Utilities Expense,Tyrell Corp,Supplies purchase,JE-00367
+2024-09-17,4575.83,6050,Utilities Expense,Cyberdyne Systems,Subscription renewal,JE-00550
+2024-07-10,27085.89,6070,Travel & Entertainment,Stark Industries,Vendor payment,JE-00697
+2024-08-16,7574.08,6060,Marketing Expense,Wayne Enterprises,Monthly invoice,JE-00670
+2024-08-12,1390.83,5010,Cost of Goods Sold,Globex Corp,Maintenance work,JE-00177
+2024-07-30,700.08,5010,Cost of Goods Sold,Globex Corp,Service charge,JE-00486
+2024-09-17,2419.62,4010,Sales Revenue,Globex Corp,Subscription renewal,JE-00643
+2024-05-31,4004.78,6020,Software Subscriptions,Tyrell Corp,Consulting fee,JE-00079
+2024-08-05,8120.7,6030,Insurance Expense,Tyrell Corp,Maintenance work,JE-00100
+2024-04-25,1994.28,4020,Service Revenue,Hooli Inc,Consulting fee,JE-00324
+2024-01-08,1060.97,6060,Marketing Expense,Soylent Foods,Reimbursement,JE-00259
+2024-09-24,5034.18,6010,Professional Fees,Cyberdyne Systems,Contract milestone,JE-00562
+2024-01-06,4800.0,6050,Utilities Expense,Cedar & Co #3203,,JE-00762
+2024-12-12,2914.72,6080,Repairs & Maintenance,Stark Industries,Service charge,JE-00402
+2024-06-19,9700.0,4020,Service Revenue,Umbrella Co,Contract milestone,JE-00698
+2024-08-02,19500.33,6020,Software Subscriptions,Soylent Foods,Service charge,JE-00672
+2024-01-26,2465.08,4010,Sales Revenue,Umbrella Co,Contract milestone,JE-00221
+2024-11-07,1169.88,6090,Office Supplies,Wayne Enterprises,Equipment rental,JE-00447
+2024-08-09,1009.6,6060,Marketing Expense,Tyrell Corp,Contract milestone,JE-00188
+2024-05-17,2308.58,4010,Sales Revenue,Initech LLC,Vendor payment,JE-00458
+2024-09-27,1760.3,4020,Service Revenue,Hooli Inc,Contract milestone,JE-00206
+2024-05-08,24250.0,6050,Utilities Expense,Stark Industries,Maintenance work,JE-00699
+2024-10-29,18620.17,6020,Software Subscriptions,Wayne Enterprises,Equipment rental,JE-00692
+2024-07-02,4374.87,6010,Professional Fees,Initech LLC,Equipment rental,JE-00366
+2024-11-10,9600.0,6010,Professional Fees,Vista Trading Co #6655,,JE-00730
+2024-02-07,1256.39,4020,Service Revenue,Vandelay Imports,Equipment rental,JE-00588
+2024-12-04,3139.95,7010,Bank Fees,Tyrell Corp,Equipment rental,JE-00230
+2024-08-22,5447.35,6030,Insurance Expense,Massive Dynamic,Subscription renewal,JE-00451
+2024-01-25,5159.93,6080,Repairs & Maintenance,Wayne Enterprises,Consulting fee,JE-00513
+2024-12-16,2504.89,6030,Insurance Expense,Tyrell Corp,Contract milestone,JE-00369
+2024-09-13,3759.58,6010,Professional Fees,Cyberdyne Systems,Reimbursement,JE-00287
+2024-12-04,1063.2,5010,Cost of Goods Sold,Acme Supplies,Supplies purchase,JE-00063
+2024-08-01,5014.04,6040,Rent Expense,Vandelay Imports,Reimbursement,JE-00092
+2024-12-29,9600.0,6010,Professional Fees,Echo Services #8018,,JE-00776
+2024-02-14,1323.65,5010,Cost of Goods Sold,Globex Corp,Reimbursement,JE-00467
+2024-02-14,7904.5,6030,Insurance Expense,Umbrella Co,Vendor payment,JE-00104
+2024-02-28,951.6,6090,Office Supplies,Vandelay Imports,Service charge,JE-00152
+2024-12-06,3302.82,6050,Utilities Expense,Vandelay Imports,Vendor payment,JE-00056
+2024-07-30,2120.5,4020,Service Revenue,Cyberdyne Systems,Reimbursement,JE-00073
+2024-12-30,4800.0,6050,Utilities Expense,Cedar & Co #5489,,JE-00782
+2024-10-30,2278.1,4010,Sales Revenue,Hooli Inc,Subscription renewal,JE-00110
+2024-11-20,1577.54,4020,Service Revenue,Globex Corp,Vendor payment,JE-00075
+2024-08-03,4800.0,6080,Repairs & Maintenance,Redrock LLC #5596,,JE-00747
+2024-10-18,1327.08,5010,Cost of Goods Sold,Acme Supplies,Supplies purchase,JE-00531
+2024-12-20,754.19,6060,Marketing Expense,Soylent Foods,Reimbursement,JE-00317
+2024-07-08,713.64,6060,Marketing Expense,Vandelay Imports,Equipment rental,JE-00302
+2024-10-19,9600.0,6090,Office Supplies,Echo Services #7897,,JE-00760
+2024-02-13,3717.19,6070,Travel & Entertainment,Umbrella Co,Equipment rental,JE-00171
+2024-12-17,5144.25,6050,Utilities Expense,Soylent Foods,Contract milestone,JE-00088
+2024-05-03,2200.3,6080,Repairs & Maintenance,Soylent Foods,Vendor payment,JE-00384
+2024-07-23,5327.06,6080,Repairs & Maintenance,Globex Corp,Maintenance work,JE-00483
+2024-06-11,1452.31,5010,Cost of Goods Sold,Initech LLC,Monthly invoice,JE-00567
+2024-06-10,927.77,6090,Office Supplies,Acme Supplies,Contract milestone,JE-00378
+2024-07-05,3189.71,6050,Utilities Expense,Vandelay Imports,Maintenance work,JE-00350
+2024-04-05,1261.43,5010,Cost of Goods Sold,Soylent Foods,Maintenance work,JE-00382
+2024-07-23,4416.96,6040,Rent Expense,Tyrell Corp,Consulting fee,JE-00327
+2024-06-17,1060.82,6090,Office Supplies,Wayne Enterprises,Reimbursement,JE-00620
+2024-07-15,2015.15,4010,Sales Revenue,Initech LLC,Vendor payment,JE-00224
+2024-02-12,3172.08,6070,Travel & Entertainment,Massive Dynamic,Reimbursement,JE-00349
+2024-04-02,2635.76,7010,Bank Fees,Hooli Inc,Reimbursement,JE-00589
+2024-10-01,1451.03,5010,Cost of Goods Sold,Stark Industries,Consulting fee,JE-00471
+2024-01-18,2276.75,7010,Bank Fees,Umbrella Co,Maintenance work,JE-00208
+2024-12-20,3712.24,6030,Insurance Expense,Cyberdyne Systems,Vendor payment,JE-00119
+2024-01-30,25627.68,6010,Professional Fees,Hooli Inc,Maintenance work,JE-00679
+2024-12-02,4532.48,6070,Travel & Entertainment,Soylent Foods,Vendor payment,JE-00636
+2024-12-25,9600.0,6060,Marketing Expense,Northwind Co #2859,,JE-00785
+2024-11-22,2209.07,4020,Service Revenue,Wayne Enterprises,Monthly invoice,JE-00039
+2024-06-10,2483.83,4010,Sales Revenue,Initech LLC,Supplies purchase,JE-00253
+2024-07-22,1400.0,6090,Office Supplies,Acme Supplies,Vendor payment,JE-00711
+2024-03-15,4946.43,6080,Repairs & Maintenance,Vandelay Imports,Consulting fee,JE-00499
+2024-08-26,4333.89,6010,Professional Fees,Acme Supplies,Maintenance work,JE-00228
+2024-01-29,1123.58,4010,Sales Revenue,Stark Industries,Maintenance work,JE-00166
+2024-11-24,9600.0,7010,Bank Fees,Apex Traders #9382,,JE-00726
+2024-01-19,3893.78,6020,Software Subscriptions,Umbrella Co,Maintenance work,JE-00142
+2024-06-10,1909.44,7010,Bank Fees,Initech LLC,Service charge,JE-00282
+2024-01-16,4873.84,6070,Travel & Entertainment,Cyberdyne Systems,Reimbursement,JE-00007
+2024-06-13,1955.06,4020,Service Revenue,Acme Supplies,Vendor payment,JE-00510
+2024-12-23,6248.11,6040,Rent Expense,Wayne Enterprises,Equipment rental,JE-00331
+2024-10-28,5016.11,6050,Utilities Expense,Beacon LLC #3777,Contract milestone,JE-00703
+2024-04-16,2854.07,6070,Travel & Entertainment,Tyrell Corp,Supplies purchase,JE-00502
+2024-10-16,755.18,5010,Cost of Goods Sold,Umbrella Co,Supplies purchase,JE-00493
+2024-04-30,1350.56,6090,Office Supplies,Hooli Inc,Vendor payment,JE-00001
+2024-07-05,9198.29,6030,Insurance Expense,Massive Dynamic,Supplies purchase,JE-00154
+2024-06-22,9600.0,7010,Bank Fees,Cedar & Co #9381,,JE-00798
+2024-05-27,1187.12,6090,Office Supplies,Soylent Foods,Contract milestone,JE-00258
+2024-06-13,9923.74,4020,Service Revenue,Tyrell Corp,Reimbursement,JE-00709
+2024-10-31,984.32,6090,Office Supplies,Soylent Foods,Equipment rental,JE-00585
+2024-09-15,6358.05,6030,Insurance Expense,Initech LLC,Supplies purchase,JE-00674
+2024-02-05,682.26,6090,Office Supplies,Massive Dynamic,Maintenance work,JE-00651
+2024-12-21,9600.0,6070,Travel & Entertainment,Quantum Ventures #6733,,JE-00748
+2024-08-15,3892.66,4010,Sales Revenue,Initech LLC,Supplies purchase,JE-00011
+2024-02-06,1168.51,5010,Cost of Goods Sold,Cyberdyne Systems,Contract milestone,JE-00605
+2024-10-29,4661.37,6070,Travel & Entertainment,Acme Supplies,Maintenance work,JE-00537
+2024-12-25,4611.5,6070,Travel & Entertainment,Acme Supplies,Contract milestone,JE-00045
+2024-10-16,3909.01,7010,Bank Fees,Globex Corp,Supplies purchase,JE-00631
+2024-06-19,2278.7,6020,Software Subscriptions,Massive Dynamic,Subscription renewal,JE-00242
+2024-03-12,7328.76,6050,Utilities Expense,Cyberdyne Systems,Reimbursement,JE-00532
+2024-04-04,724.54,6090,Office Supplies,Umbrella Co,Supplies purchase,JE-00130
+2024-05-24,1459.86,6090,Office Supplies,Soylent Foods,Supplies purchase,JE-00233
+2024-12-31,4683.77,6040,Rent Expense,Massive Dynamic,Monthly invoice,JE-00250
+2024-12-26,2200.0,6070,Travel & Entertainment,Tyrell Corp,Reimbursement,JE-00686
+2024-10-31,4111.15,6070,Travel & Entertainment,Vandelay Imports,Subscription renewal,JE-00176
+2024-09-18,7064.59,6050,Utilities Expense,Massive Dynamic,Contract milestone,JE-00010
+2024-11-01,3474.44,7010,Bank Fees,Stark Industries,Consulting fee,JE-00020
+2024-12-17,3624.33,7010,Bank Fees,Vandelay Imports,Vendor payment,JE-00577
+2024-04-22,4545.6,6010,Professional Fees,Wayne Enterprises,Service charge,JE-00423
+2024-04-17,4055.37,6070,Travel & Entertainment,Massive Dynamic,Maintenance work,JE-00292
+2024-05-10,6000.69,6040,Rent Expense,Stark Industries,Reimbursement,JE-00655
+2024-03-08,5321.94,6030,Insurance Expense,Massive Dynamic,Reimbursement,JE-00227
+2024-02-05,3062.88,6040,Rent Expense,Cyberdyne Systems,Vendor payment,JE-00617
+2024-08-20,3484.94,6040,Rent Expense,Massive Dynamic,Vendor payment,JE-00524
+2024-01-17,1282.76,6060,Marketing Expense,Initech LLC,Maintenance work,JE-00383
+2024-01-13,4800.0,6080,Repairs & Maintenance,Summit Holdings #3370,,JE-00787
+2024-07-20,24000.0,6050,Utilities Expense,Brightway Group #5196,,JE-00741
+2024-04-15,4015.82,7010,Bank Fees,Echo Services #3755,Subscription renewal,JE-00705
+2024-04-08,2098.79,4020,Service Revenue,Tyrell Corp,Monthly invoice,JE-00248
+2024-06-21,2582.26,4010,Sales Revenue,Soylent Foods,Monthly invoice,JE-00071
+2024-07-10,5171.05,6010,Professional Fees,Soylent Foods,Subscription renewal,JE-00299
+2024-10-16,3000.0,6080,Repairs & Maintenance,Cyberdyne Systems,Monthly invoice,JE-00678
+2024-02-05,3041.83,6020,Software Subscriptions,Hooli Inc,Consulting fee,JE-00547
+2024-08-09,830.27,6060,Marketing Expense,Wayne Enterprises,Service charge,JE-00377
+2024-12-09,5458.28,6040,Rent Expense,Stark Industries,Service charge,JE-00278
+2024-07-18,24250.0,5010,Cost of Goods Sold,Cyberdyne Systems,Contract milestone,JE-00706
+2024-12-23,4305.5,7010,Bank Fees,Umbrella Co,Contract milestone,JE-00529
+2024-12-09,798.44,6060,Marketing Expense,Hooli Inc,Monthly invoice,JE-00491
+2024-05-13,3615.9,6050,Utilities Expense,Initech LLC,Equipment rental,JE-00393
+2024-12-28,24000.0,6090,Office Supplies,Maple Holdings #5513,,JE-00756
+2024-11-01,3838.91,7010,Bank Fees,Vandelay Imports,Equipment rental,JE-00581
+2024-04-22,3011.2,6080,Repairs & Maintenance,Umbrella Co,Consulting fee,JE-00454
+2024-12-31,24000.0,5010,Cost of Goods Sold,Summit Holdings #1565,,JE-00731
+2024-07-16,4138.98,6080,Repairs & Maintenance,Cyberdyne Systems,Vendor payment,JE-00534
+2024-03-01,5382.31,6030,Insurance Expense,Wayne Enterprises,Subscription renewal,JE-00656
+2024-08-01,3968.93,6080,Repairs & Maintenance,Hooli Inc,Consulting fee,JE-00185
+2024-12-24,9600.0,6030,Insurance Expense,Maple Holdings #5896,,JE-00746
+2024-11-16,9600.0,6060,Marketing Expense,Maple Holdings #4860,,JE-00784
+2024-10-30,3452.66,6020,Software Subscriptions,Soylent Foods,Subscription renewal,JE-00461
+2024-03-14,729.55,5010,Cost of Goods Sold,Acme Supplies,Subscription renewal,JE-00290
+2024-12-21,9600.0,6080,Repairs & Maintenance,Maple Holdings #9905,,JE-00715
+2024-11-13,2590.45,6080,Repairs & Maintenance,Tyrell Corp,Vendor payment,JE-00180
+2024-10-16,3972.11,6010,Professional Fees,Acme Supplies,Supplies purchase,JE-00064
+2024-04-27,4800.0,6020,Software Subscriptions,Apex Traders #4921,,JE-00738
+2024-07-24,1599.56,4020,Service Revenue,Massive Dynamic,Maintenance work,JE-00106
+2024-07-03,1140.25,6090,Office Supplies,Globex Corp,Monthly invoice,JE-00434
+2024-12-06,1268.13,4020,Service Revenue,Umbrella Co,Vendor payment,JE-00575
+2024-01-30,3390.87,6010,Professional Fees,Cyberdyne Systems,Maintenance work,JE-00257
+2024-01-12,804.09,6060,Marketing Expense,Globex Corp,Vendor payment,JE-00215
+2024-10-09,5804.57,6040,Rent Expense,Soylent Foods,Service charge,JE-00070
+2024-04-16,3356.86,6010,Professional Fees,Umbrella Co,Service charge,JE-00191
+2024-08-19,949.2,6090,Office Supplies,Vandelay Imports,Supplies purchase,JE-00314
+2024-11-03,24000.0,6080,Repairs & Maintenance,Vista Trading Co #6877,,JE-00720
+2024-02-28,6282.1,6050,Utilities Expense,Umbrella Co,Monthly invoice,JE-00518
+2024-05-15,964.97,5010,Cost of Goods Sold,Globex Corp,Supplies purchase,JE-00226
+2024-04-02,1010.56,6090,Office Supplies,Umbrella Co,Reimbursement,JE-00619
+2024-11-25,4622.9,6080,Repairs & Maintenance,Stark Industries,Vendor payment,JE-00319
+2024-11-11,6262.15,6050,Utilities Expense,Soylent Foods,Equipment rental,JE-00235
+2024-12-17,2911.06,6070,Travel & Entertainment,Vandelay Imports,Maintenance work,JE-00404
+2024-06-28,4853.38,6010,Professional Fees,Wayne Enterprises,Equipment rental,JE-00409
+2024-07-29,5085.31,6030,Insurance Expense,Stark Industries,Subscription renewal,JE-00446
+2024-08-16,3731.14,7010,Bank Fees,Stark Industries,Equipment rental,JE-00530
+2024-09-17,1110.41,6090,Office Supplies,Soylent Foods,Equipment rental,JE-00463
+2024-09-26,5665.77,6050,Utilities Expense,Tyrell Corp,Supplies purchase,JE-00601
+2024-07-17,6781.01,6030,Insurance Expense,Stark Industries,Contract milestone,JE-00470
+2024-10-10,2181.93,6070,Travel & Entertainment,Vandelay Imports,Reimbursement,JE-00081
+2024-01-27,5871.73,6040,Rent Expense,Tyrell Corp,Supplies purchase,JE-00694
+2024-05-16,6860.05,6030,Insurance Expense,Globex Corp,Service charge,JE-00157
+2024-10-31,4399.89,6080,Repairs & Maintenance,Globex Corp,Consulting fee,JE-00445
+2024-06-26,4654.51,6010,Professional Fees,Massive Dynamic,Maintenance work,JE-00391
+2024-07-10,4743.47,6020,Software Subscriptions,Hooli Inc,Equipment rental,JE-00211
+2024-08-21,3341.19,4010,Sales Revenue,Globex Corp,Supplies purchase,JE-00097
+2024-07-23,4445.44,6040,Rent Expense,Cyberdyne Systems,Contract milestone,JE-00414
+2024-04-10,2852.82,4010,Sales Revenue,Massive Dynamic,Service charge,JE-00396
+2024-09-09,2269.78,7010,Bank Fees,Stark Industries,Consulting fee,JE-00613
+2024-09-23,916.42,6060,Marketing Expense,Umbrella Co,Vendor payment,JE-00628
+2024-09-12,5676.55,6040,Rent Expense,Initech LLC,Reimbursement,JE-00388
+2024-10-15,868.39,6060,Marketing Expense,Vandelay Imports,Reimbursement,JE-00146
+2024-07-03,4943.48,6030,Insurance Expense,Wayne Enterprises,Subscription renewal,JE-00341
+2024-06-26,5207.97,6040,Rent Expense,Hooli Inc,Maintenance work,JE-00506
+2024-02-27,5985.88,6030,Insurance Expense,Stark Industries,Contract milestone,JE-00394
+2024-07-03,4584.87,6040,Rent Expense,Cyberdyne Systems,Consulting fee,JE-00054
+2024-01-19,4421.9,6010,Professional Fees,Cyberdyne Systems,Consulting fee,JE-00621
+2024-03-28,1083.97,6060,Marketing Expense,Wayne Enterprises,,JE-00662
+2024-05-04,24000.0,7010,Bank Fees,Maple Holdings #1079,,JE-00753
+2024-03-01,3358.31,6070,Travel & Entertainment,Umbrella Co,Maintenance work,JE-00322
+2024-04-09,6119.18,6040,Rent Expense,Initech LLC,Consulting fee,JE-00606
+2024-04-17,7950.69,6040,Rent Expense,Initech LLC,Reimbursement,JE-00561
+2024-11-27,2194.17,4020,Service Revenue,Vandelay Imports,Subscription renewal,JE-00061
+2024-05-31,1169.83,6090,Office Supplies,Tyrell Corp,Subscription renewal,JE-00084
+2024-12-31,24000.0,6050,Utilities Expense,Brightway Group #4440,,JE-00728
+2024-02-02,1107.14,6090,Office Supplies,Acme Supplies,Equipment rental,JE-00432
+2024-10-22,6371.0,6050,Utilities Expense,Stark Industries,Maintenance work,JE-00642
+2024-08-23,5164.71,6050,Utilities Expense,Stark Industries,Maintenance work,JE-00626
+2024-02-02,7201.03,6040,Rent Expense,Umbrella Co,Service charge,JE-00560
+2024-01-15,1428.7,4020,Service Revenue,Soylent Foods,Service charge,JE-00360
+2024-12-11,1980.2,6080,Repairs & Maintenance,Massive Dynamic,Consulting fee,JE-00629
+2024-01-26,3327.24,6070,Travel & Entertainment,Wayne Enterprises,Vendor payment,JE-00053
+2024-05-02,5570.75,6030,Insurance Expense,Wayne Enterprises,Equipment rental,JE-00398
+2024-05-16,847.05,5010,Cost of Goods Sold,Massive Dynamic,Reimbursement,JE-00479
+2024-02-29,1311.95,6060,Marketing Expense,Umbrella Co,Service charge,JE-00652
+2024-07-05,1567.48,5010,Cost of Goods Sold,Acme Supplies,Subscription renewal,JE-00280
+2024-02-23,762.53,6090,Office Supplies,Globex Corp,Monthly invoice,JE-00239
+2024-08-13,4801.8,6030,Insurance Expense,Hooli Inc,Service charge,JE-00536
+2024-06-06,7274.71,6030,Insurance Expense,Wayne Enterprises,,JE-00668
+2024-04-15,5127.8,6030,Insurance Expense,Globex Corp,Monthly invoice,JE-00008
+2024-12-05,1300.0,6070,Travel & Entertainment,Tyrell Corp,Consulting fee,JE-00707
+2024-01-03,2189.42,6040,Rent Expense,Umbrella Co,Supplies purchase,JE-00634
+2024-07-24,2700.48,7010,Bank Fees,Acme Supplies,Service charge,JE-00295
+2024-10-02,6762.02,6010,Professional Fees,Massive Dynamic,Consulting fee,JE-00082
+2024-02-10,4800.0,5010,Cost of Goods Sold,Quantum Ventures #2682,,JE-00723
+2024-02-06,1641.24,5010,Cost of Goods Sold,Wayne Enterprises,Subscription renewal,JE-00542
+2024-01-30,12852.57,4010,Sales Revenue,Umbrella Co,Service charge,JE-00675
+2024-11-23,4800.0,6080,Repairs & Maintenance,Pinecone Partners #6050,,JE-00795
+2024-06-11,1186.28,6090,Office Supplies,Wayne Enterprises,Contract milestone,JE-00540
+2024-12-17,1229.77,5010,Cost of Goods Sold,Wayne Enterprises,Vendor payment,JE-00368
+2024-01-11,2700.53,6020,Software Subscriptions,Vandelay Imports,Equipment rental,JE-00134
+2024-02-07,3930.12,6070,Travel & Entertainment,Redrock LLC #3587,Service charge,JE-00681
+2024-08-29,5682.24,6050,Utilities Expense,Hooli Inc,Contract milestone,JE-00009
+2024-09-24,7188.36,6030,Insurance Expense,Acme Supplies,Contract milestone,JE-00291
+2024-01-04,3393.05,6080,Repairs & Maintenance,Vandelay Imports,Service charge,JE-00094
+2024-04-22,823.57,6090,Office Supplies,Initech LLC,Service charge,JE-00473
+2024-12-24,2387.22,6010,Professional Fees,Stark Industries,Equipment rental,JE-00558
+2024-08-25,24000.0,6010,Professional Fees,Cedar & Co #2786,,JE-00765
+2024-03-18,3480.45,6020,Software Subscriptions,Cyberdyne Systems,Monthly invoice,JE-00527
+2024-10-27,5150.03,6010,Professional Fees,Vandelay Imports,Monthly invoice,JE-00659
+2024-03-20,1139.54,6090,Office Supplies,Umbrella Co,Monthly invoice,JE-00485
+2024-04-11,1191.47,6060,Marketing Expense,Initech LLC,Consulting fee,JE-00480
+2024-04-05,3227.91,4010,Sales Revenue,Hooli Inc,Reimbursement,JE-00597
+2024-02-15,1911.29,4020,Service Revenue,Stark Industries,Subscription renewal,JE-00492
+2024-01-12,4391.76,6070,Travel & Entertainment,Globex Corp,Service charge,JE-00503
+2024-08-08,1033.33,6090,Office Supplies,Cyberdyne Systems,Vendor payment,JE-00359
+2024-05-28,1406.79,4020,Service Revenue,Soylent Foods,Consulting fee,JE-00357
+2024-03-04,4080.6,6070,Travel & Entertainment,Soylent Foods,Equipment rental,JE-00133
