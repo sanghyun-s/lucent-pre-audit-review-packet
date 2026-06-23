@@ -142,11 +142,11 @@ function NarrativeCard({ narrative }) {
         </div>
       )}
 
-      {/* Recommended follow-up — bulleted list */}
+      {/* Evidence to Request — the reviewer's next action, emphasized */}
       {Array.isArray(recommended_follow_up) && recommended_follow_up.length > 0 && (
-        <div className="space-y-1 pt-2 border-t">
-          <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-            Recommended Follow-up
+        <div className="space-y-1.5 mt-1 rounded-md border border-blue-200 bg-blue-50/40 p-3">
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-foreground">
+            Evidence to Request
           </p>
           <ul className="text-xs leading-relaxed text-foreground list-disc pl-5 space-y-0.5">
             {recommended_follow_up.map((item, j) => (

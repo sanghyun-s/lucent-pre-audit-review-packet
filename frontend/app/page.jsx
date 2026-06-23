@@ -15,6 +15,8 @@ import FlaggedTable        from "@/components/FlaggedTable";
 import BusinessContextCard from "@/components/BusinessContextCard";
 import DataProvenanceNote from "@/components/DataProvenanceNote";
 import DataDictionary from "@/components/DataDictionary";
+import ReviewPacketSummary from "@/components/ReviewPacketSummary";
+import DataQualityExceptions from "@/components/DataQualityExceptions";
 
 import { analyze, fetchOptions } from "@/lib/api";
 
@@ -173,6 +175,7 @@ export default function Page() {
             </div>
 
             <div className="space-y-3">
+              <DataQualityExceptions integrity={result.integrity} />
               <IntegrityPanel integrity={result.integrity} />
               <FeatureFiringPanel featureFiring={result.feature_firing} />
             </div>
@@ -192,6 +195,8 @@ export default function Page() {
                 amounts concentrate.
               </p>
             </div>
+
+            <ReviewPacketSummary result={result} fileName={file?.name} />
 
             <SummaryCards summary={result.summary} />
 
