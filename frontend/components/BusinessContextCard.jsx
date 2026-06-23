@@ -51,7 +51,7 @@ export default function BusinessContextCard() {
           </p>
           <p className="text-xs leading-relaxed text-foreground">
             Fraud conclusions, audit opinions, preparing financial statements, or
-            replacing professional judgment. ARGUS reviews the general ledger{" "}
+            replacing professional judgment. LUCENT reviews the general ledger{" "}
             <span className="italic">before</span> financial statements are finalized.
           </p>
         </div>

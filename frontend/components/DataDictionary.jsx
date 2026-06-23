@@ -7,7 +7,7 @@ import { BookOpen, ChevronDown, ChevronRight } from "lucide-react";
 import SignalCard from "./SignalCard";
 
 /**
- * DataDictionary — Section 5, "How to Read ARGUS Signals."
+ * DataDictionary — Section 5, "How to Read LUCENT Signals."
  *
  * Collapsible by default (matches the Section 2 panel pattern) so it doesn't
  * push the workflow down. Has id="signal-guide" so a "View Signal Guide" link
@@ -150,7 +150,7 @@ const GROUPS = [
       {
         indicator: "Materiality filter",
         whatItMeans:
-          "ARGUS compares each amount to materiality thresholds derived from your benchmark and lowers the priority of small-dollar items.",
+          "LUCENT compares each amount to materiality thresholds derived from your benchmark and lowers the priority of small-dollar items.",
         whyItMatters:
           "It keeps attention on amounts large enough to matter and prevents tiny statistical oddities from crowding the queue. It is the only step that can lower a row's priority.",
         whatToRequest:
@@ -161,7 +161,7 @@ const GROUPS = [
       {
         indicator: "Qualitative override",
         whatItMeans:
-          "When two or more review indicators appear on the same transaction, ARGUS raises its priority above what the dollar amount alone would assign.",
+          "When two or more review indicators appear on the same transaction, LUCENT raises its priority above what the dollar amount alone would assign.",
         whyItMatters:
           "It encodes the audit principle that a pattern of red flags can matter regardless of size — a small transaction with several indicators can deserve more attention than a large clean one.",
         whatToRequest:
@@ -184,7 +184,7 @@ const GROUPS = [
         indicator: "Audit Review Label",
         aka: "PCAOB-aligned, non-conclusive review label",
         whatItMeans:
-          "The review label ARGUS assigns — Potential Material Weakness Indicator, Potential Significant Deficiency, or Monitor — Below Escalation Threshold.",
+          "The review label LUCENT assigns — Potential Material Weakness Indicator, Potential Significant Deficiency, or Monitor — Below Escalation Threshold.",
         whyItMatters:
           "It communicates review priority in PCAOB-aligned, deliberately hedged language an audit-literate reader recognizes.",
         whatToRequest:
@@ -226,7 +226,7 @@ export default function DataDictionary({ defaultOpen = false }) {
       <CardHeader className="flex flex-row items-center justify-between space-y-0">
         <CardTitle className="text-lg flex items-center gap-2">
           <BookOpen className="h-4 w-4" />
-          Section 5 — How to Read ARGUS Signals
+          Section 5 — How to Read LUCENT Signals
         </CardTitle>
         <Button
           variant="outline"
@@ -250,7 +250,7 @@ export default function DataDictionary({ defaultOpen = false }) {
         <CardContent className="space-y-6">
           <p className="text-sm text-muted-foreground">
             Each signal below explains what it means, why it matters, what evidence to
-            request, and — importantly — what it does not mean. ARGUS indicates review
+            request, and — importantly — what it does not mean. LUCENT indicates review
             priority; it never concludes fraud.
           </p>
           {GROUPS.map((group) => (

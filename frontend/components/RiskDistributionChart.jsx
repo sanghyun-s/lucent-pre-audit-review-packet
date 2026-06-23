@@ -25,7 +25,7 @@ export default function RiskDistributionChart({ data }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">Transactions by PCAOB Risk Tier</CardTitle>
+        <CardTitle className="text-lg">Transactions by Review Tier</CardTitle>
       </CardHeader>
       <CardContent>
         <Plot

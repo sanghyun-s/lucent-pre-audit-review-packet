@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { Eye } from "lucide-react";
 
 import ClientProfileForm   from "@/components/ClientProfileForm";
 import MaterialityBanner   from "@/components/MaterialityBanner";
@@ -29,18 +28,19 @@ const DEFAULT_FORM = {
 };
 
 /**
- * Phase 5A — business-context & explainability refactor over the existing
- * four-section workflow. The engine is untouched; this layer reframes the
- * page so a non-technical reviewer can tell what it's for, what each signal
- * means, and what evidence to request.
+ * LUCENT — Pre-Audit Review Packet for GL exports.
  *
- *   Header           ARGUS + business subtitle
+ * Business-context layer over the existing four-section workflow. The engine is
+ * untouched; this layer reframes the page so a non-technical reviewer can tell
+ * what it's for, what each signal means, and what evidence to request.
+ *
+ *   Header           LUCENT + business subtitle
  *   Business Context what it's for / input / output / not for
  *   Section 1        Review Context & Input File   (+ data-provenance note)
  *   Section 2        Data Quality Check
  *   Section 3        Review Queue Summary
  *   Section 4        Flagged Transactions & Evidence Requests (+ Signal Guide link)
- *   Section 5        How to Read ARGUS Signals     (collapsible data dictionary)
+ *   Section 5        How to Read LUCENT Signals    (collapsible data dictionary)
  *   Disclaimer       the honesty boundary
  */
 export default function Page() {
@@ -86,12 +86,11 @@ export default function Page() {
   return (
     <main className="container py-8 space-y-8">
       <header className="space-y-1">
-        <h1 className="text-3xl font-bold tracking-tight flex items-center gap-2">
-          <Eye className="h-7 w-7" />
-          ARGUS
+        <h1 className="text-3xl font-bold tracking-tight">
+          LUCENT
         </h1>
         <p className="text-sm font-medium text-foreground">
-          Audit Review Packet
+          Pre-Audit Review Packet
         </p>
         <p className="text-sm text-muted-foreground max-w-3xl">
           Narrow a full general-ledger export into a prioritized review queue — see
@@ -243,14 +242,14 @@ export default function Page() {
       )}
 
       {/* ─────────────────────────────────────────────────────────────── */}
-      {/* Section 5 — How to Read ARGUS Signals  (always available)       */}
+      {/* Section 5 — How to Read LUCENT Signals  (always available)      */}
       {/* ─────────────────────────────────────────────────────────────── */}
       <DataDictionary />
 
-      {/* Honesty boundary — what ARGUS does not do */}
+      {/* Honesty boundary — what LUCENT does not do */}
       <footer className="rounded-md border border-muted bg-muted/30 p-4">
         <p className="text-xs leading-relaxed text-muted-foreground">
-          ARGUS indicates review priority; it does not conclude. It does not prepare
+          LUCENT indicates review priority; it does not conclude. It does not prepare
           financial statements, perform an audit, issue an audit opinion, or detect or
           conclude fraud. It narrows a general-ledger population and explains why
           selected transactions deserve attention, leaving all judgment to the reviewer.

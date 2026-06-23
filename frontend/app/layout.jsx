@@ -1,9 +1,9 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "ARGUS — Audit Risk Guidance, Unified System",
+  title: "LUCENT — Pre-Audit Review Packet",
   description:
-    "ML anomaly detection + materiality-calibrated risk scoring + PCAOB-aligned labels for QuickBooks GL exports.",
+    "Narrow a full general-ledger export into a prioritized review queue — see what to check, why it matters, and what evidence to request before close, CPA handoff, audit readiness, or investor diligence.",
 };
 
 export default function RootLayout({ children }) {
