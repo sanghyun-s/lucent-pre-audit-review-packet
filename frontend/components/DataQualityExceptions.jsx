@@ -21,6 +21,30 @@ import { AlertTriangle } from "lucide-react";
  * Usage (Section 2):
  *   <DataQualityExceptions integrity={result.integrity} />
  */
+// Integrity findings carry a string `summary` plus a sometimes-STRUCTURED
+// `detail` (e.g., cross-footing returns {sum_d, sum_c, diff, pct}). Rendering an
+// object directly as a React child throws, so coerce anything non-string to
+// readable text and never hand React a raw object.
+const DETAIL_LABELS = {
+  sum_d: "Total debits",
+  sum_c: "Total credits",
+  diff: "Difference",
+  pct: "Difference (%)",
+};
+
+function asText(v) {
+  if (v == null) return null;
+  if (typeof v === "string") return v;
+  if (typeof v === "number" || typeof v === "boolean") return String(v);
+  if (typeof v === "object") {
+    const parts = Object.entries(v).map(
+      ([k, val]) => `${DETAIL_LABELS[k] || k}: ${val}`
+    );
+    return parts.length ? parts.join(" · ") : null;
+  }
+  return String(v);
+}
+
 export default function DataQualityExceptions({ integrity }) {
   const findings = integrity?.findings || [];
   const exceptions = findings.filter((f) => f.status && f.status !== "Pass");
@@ -41,22 +65,26 @@ export default function DataQualityExceptions({ integrity }) {
           relying on the review queue — a warning is advisory, a failure should be
           cleared first.
         </p>
-        {exceptions.map((f, i) => (
-          <div key={i} className="rounded-md border p-3 space-y-1">
-            <div className="flex items-center gap-2">
-              <Badge variant={f.status === "Fail" ? "danger" : "warning"}>
-                {f.status}
-              </Badge>
-              <span className="text-sm font-medium">{f.name}</span>
+        {exceptions.map((f, i) => {
+          const summaryText = asText(f.summary);
+          const detailText = typeof f.detail === "string" ? f.detail : null;
+          return (
+            <div key={i} className="rounded-md border p-3 space-y-1">
+              <div className="flex items-center gap-2">
+                <Badge variant={f.status === "Fail" ? "danger" : "warning"}>
+                  {f.status}
+                </Badge>
+                <span className="text-sm font-medium">{f.name}</span>
+              </div>
+              {summaryText && (
+                <p className="text-xs text-foreground">{summaryText}</p>
+              )}
+              {detailText && (
+                <p className="text-xs text-muted-foreground">{detailText}</p>
+              )}
             </div>
-            {f.summary && (
-              <p className="text-xs text-foreground">{f.summary}</p>
-            )}
-            {f.detail && (
-              <p className="text-xs text-muted-foreground">{f.detail}</p>
-            )}
-          </div>
-        ))}
+          );
+        })}
       </CardContent>
     </Card>
   );
