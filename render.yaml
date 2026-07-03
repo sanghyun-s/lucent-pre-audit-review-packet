@@ -41,10 +41,10 @@ services:
     envVars:
       - key: NODE_VERSION
         value: "20"
-      # Auto-wired from the backend service's hostname (no scheme).
-      # next.config.js prepends https:// and proxies /api/* there.
+      # Set this to the backend's PUBLIC URL after it deploys, e.g.
+      #   https://lucent-backend.onrender.com
+      # (fromService `host` only yields Render's internal/bare hostname, which
+      # is NOT publicly resolvable — the Next.js proxy needs the .onrender.com
+      # URL). next.config.js prepends https:// if you omit the scheme.
       - key: NEXT_PUBLIC_API_BASE_URL
-        fromService:
-          type: web
-          name: lucent-backend
-          property: host
+        sync: false
