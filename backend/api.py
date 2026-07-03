@@ -43,6 +43,7 @@ from __future__ import annotations
 
 import io
 import math
+import os
 from datetime import date, datetime
 from typing import Any
 
@@ -90,13 +91,20 @@ app = FastAPI(
                 "disclaimer) with strict validation and deterministic fallback.",
 )
 
-# Permissive CORS for local dev. Tighten before production deploy.
+# In production the Next.js frontend proxies /api/* server-side (see
+# next.config.js rewrites), so the browser never calls this API cross-origin
+# and CORS isn't exercised. ALLOWED_ORIGINS (comma-separated) lets a deployment
+# add its public frontend URL for the case where the browser calls the backend
+# directly (NEXT_PUBLIC_API_BASE_URL). Defaults to the local dev origins.
+_default_origins = "http://localhost:3000,http://127.0.0.1:3000"
+_allowed_origins = [
+    o.strip()
+    for o in os.getenv("ALLOWED_ORIGINS", _default_origins).split(",")
+    if o.strip()
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-    ],
+    allow_origins=_allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

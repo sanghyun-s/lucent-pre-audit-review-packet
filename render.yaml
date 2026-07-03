@@ -1,0 +1,50 @@
+# Render Blueprint — Lucent Pre-Audit Review Packet (AI Audit Risk Analyzer)
+# -----------------------------------------------------------------------------
+# Two services from one repo:
+#   * lucent-backend  — FastAPI + scikit-learn + OpenAI (Python)
+#   * lucent-frontend — Next.js 14 (Node), proxies /api/* to the backend
+#
+# The frontend's NEXT_PUBLIC_API_BASE_URL is wired automatically from the
+# backend service's hostname (next.config.js prepends https://). No manual URL
+# copying needed.
+#
+# After the first deploy, set the backend secret in the dashboard:
+#   lucent-backend → Environment → OPENAI_API_KEY  (needed for real GPT
+#   narratives; without it the app falls back to templated narratives).
+#
+# Free-tier notes: both services sleep after ~15 min idle. The frontend build
+# (Next + plotly) is memory-heavy and may be slow on the free builder.
+
+services:
+  # ── Backend API ───────────────────────────────────────────────────────────
+  - type: web
+    name: lucent-backend
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false          # set manually in the dashboard (Secret)
+      - key: PYTHON_VERSION
+        value: "3.12.4"
+
+  # ── Frontend (Next.js) ─────────────────────────────────────────────────────
+  - type: web
+    name: lucent-frontend
+    runtime: node
+    plan: free
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    startCommand: npx next start -H 0.0.0.0 -p $PORT
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      # Auto-wired from the backend service's hostname (no scheme).
+      # next.config.js prepends https:// and proxies /api/* there.
+      - key: NEXT_PUBLIC_API_BASE_URL
+        fromService:
+          type: web
+          name: lucent-backend
+          property: host
