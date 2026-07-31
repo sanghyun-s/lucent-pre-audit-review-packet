@@ -4,12 +4,15 @@
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-// Owns transport for every endpoint. Two guarantees:
+// Owns transport for every endpoint. Three guarantees:
 //   1. The response body is read EXACTLY once, so an error response can never
 //      trigger "Failed to execute 'text' on 'Response': body stream already read".
 //   2. One automatic retry on a cold-start-style failure (gateway 5xx, network
 //      error, or timeout) after a short wait, to survive a sleeping free-tier
 //      backend waking up on the first request.
+//   3. If a transient failure outlives the retry, the user sees a plain-English
+//      message ("server waking up / can't reach server"), never a raw stream or
+//      network error.
 //
 // Retrying is safe here specifically because /api/analyze and /api/narratives are
 // stateless — no persistence, no side effects — so re-sending cannot double-write.
@@ -46,7 +49,19 @@ async function request(url, opts = {}, { retries = 1, timeoutMs = 90000 } = {}) 
         await sleep(3000);
         continue;
       }
-      throw err;
+      // Out of retries. Turn a timeout / network failure into a human message —
+      // on a free-tier host this is almost always the backend waking from idle.
+      if (err.name === "AbortError") {
+        throw new Error(
+          "The analysis server took too long to respond — it may be waking up. Please try again in a moment.",
+        );
+      }
+      if (err instanceof TypeError) {
+        throw new Error(
+          "Couldn’t reach the analysis server. Check your connection and try again.",
+        );
+      }
+      throw err; // anything else (real 4xx/5xx with a body): surface as-is
     }
   }
 }
