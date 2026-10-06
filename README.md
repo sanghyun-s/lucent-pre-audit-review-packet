@@ -2,7 +2,7 @@
 
 > *See what to check, why it matters, and what evidence to request before the handoff.*
 
-> **Status:** Phases 1–5 shipped (incl. 5A/5B business-context refactor) · **Phase 6 planned**
+> **Status:** Phases 1–5 shipped (incl. 5A/5B business-context refactor) · **Deployed/live on Render (free tier)** · Phase 6 extensions planned
 > **Stack:** FastAPI · Next.js 14 · scikit-learn · OpenAI · Tailwind · shadcn/ui · Plotly
 
 **A pre-audit review packet for general-ledger exports.** Upload a company-level QuickBooks-style GL, and LUCENT narrows a large transaction population into a prioritized review queue, explains the risk indicators in plain language, and shows what evidence to request — before close, CPA handoff, audit readiness, or investor diligence.
@@ -39,7 +39,8 @@ A journal-referenced timeline. Phase 4 shipped in three sub-phases (4a → 4b �
 | **Phase 5A — Business-context & signal-dictionary refactor** | ✅ Shipped | Jun 22, 2026 (`09c45f1`) | Frontend-only. Business Use Case card, softened subtitle, data-provenance note, review-packet section renames, a collapsible Data Dictionary (17 signal cards), and softer table column labels (Audit Review Label, Co-occurrence, Control Signal). Engine untouched. |
 | **Phase 5B — Review-packet UX & evidence-request layer** | ✅ Shipped | Jun 22, 2026 (`5fb0bb8`, fix `d4015db`) | Frontend-only. Review Packet Summary (suggested next action + top review drivers), an emphasized "Evidence to Request" block in each memo, and a Data Quality Exceptions panel. Includes a safe-render fix for structured integrity detail. Engine untouched. |
 | **LUCENT rebrand** | ✅ Shipped | Jun 23, 2026 | Final identity pass: ARGUS → LUCENT across the frontend and README, business-readable header and metadata, and the "PCAOB Risk Tier" chart title softened to "Review Tier." Public-facing only — internal logic and variable names unchanged. |
-| **Phase 6 — Deployment & extensions** | ⬜ Planned | — | Deployment (Vercel + Render/Fly.io), repository rename, Standards Grounding panel, Excel workbook export, CI/CD, API observability, period-over-period fluctuation table, multi-period comparison, row-level data-quality exception drill-down. |
+| **Deployment** | ✅ Live | — | Deployed on Render (free tier): Next.js frontend + FastAPI backend as separate services, server-side `OPENAI_API_KEY`, and `NEXT_PUBLIC_API_BASE_URL` wiring the proxy to the backend. Repository renamed to `lucent-pre-audit-review-packet`. Free-tier caveats apply (cold-start spin-up; edge rate-limiting under request bursts). |
+| **Phase 6 — Extensions** | ⬜ Planned | — | Standards Grounding panel, Excel workbook export, CI/CD, API observability, period-over-period fluctuation table, multi-period comparison, row-level data-quality exception drill-down. |
 
 ---
 
@@ -434,11 +435,11 @@ Phase 6 will add a structured Standards Grounding panel below each memo that sur
 
 ---
 
-## Phase 6 — deployment and extensions
+## Phase 6 — extensions
 
-The roadmap from here. Deployment is the immediate next step; the rest are post-deploy extensions, roughly in priority order.
+The roadmap from here. **Deployment is done** — LUCENT is live on Render's free tier (Next.js frontend + FastAPI backend as independent services). The items below are the remaining post-deploy extensions, roughly in priority order.
 
-- **Deployment** — Vercel (frontend) + Render or Fly.io (backend), server-side `OPENAI_API_KEY` as secret, CORS for the frontend domain, `NEXT_PUBLIC_API_BASE_URL` pointed at the backend (budget for free-tier cold start). LUCENT is stateless — upload → analyze → return, no persistence — which makes it a low-risk first deploy.
+- **Deployment (done)** — Live on Render's free tier: Next.js frontend + FastAPI backend as separate services, server-side `OPENAI_API_KEY`, and `NEXT_PUBLIC_API_BASE_URL` wiring the frontend proxy to the backend. LUCENT is stateless (upload → analyze → return, no persistence), which kept it a low-risk deploy. Free-tier behavior to note: the backend spins down when idle (~50s cold start on the next request), and the edge rate-limits rapid request bursts per IP.
 - **Repository rename** — rename the GitHub repo `ai-audit-risk-analyzer` → `lucent-pre-audit-review-packet` to match the product (GitHub redirects the old URL)
 - **Standards Grounding panel** — backend-derived rule-based mapping from row attributes to four fixed framework categories (AS 2401, AS 2201 (legacy AS 5), AS 1215 (legacy AS 3), COSO 2013), rendered inline at the bottom of each row expander; deterministic lookup, not LLM-generated, so citations can't be hallucinated
 - **CI/CD** — GitHub Actions running `smoke_test.py` and `api_test.py` on every push
